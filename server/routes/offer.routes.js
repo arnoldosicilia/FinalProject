@@ -9,14 +9,25 @@ router.get('/getAllOffers', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.get('/getOneCoaster/:id', (req, res, next) => {
+router.get('/getOneOffer/:id', (req, res, next) => {
     Offer.findById(req.params.id)
         .then(theOffer => res.json(theOffer))
         .catch(err => console.log(err))
 })
 
 router.post('/new', (req, res, next) => {
-    Offer.create(req.body)
+    console.log('LLEGA AL BACKKKK', req.body)
+    const newOffer = {
+        brand: req.body.brand,
+        model: req.body.model,
+        size: req.body.size,
+        type: req.body.type,
+        description: req.body.description,
+        ownerName: req.user.username,
+        owner: req.user._id
+    }
+
+    Offer.create(newOffer)
         .then(theOffer => res.json(theOffer))
         .catch(err => console.log(err))
 })

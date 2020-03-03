@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  password: String,
+  role: {
+    type: String,
+    enum: ['Owner', 'User'],
+    default: 'User'
+
+  },
+  offersOwned: [{ type: Schema.Types.ObjectId, ref: 'Offer' }],
+  offersRented: [{ type: Schema.Types.ObjectId, ref: 'Offer' }]
 }, {
   timestamps: {
     createdAt: 'created_at',

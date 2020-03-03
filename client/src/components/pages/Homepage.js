@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Homepage = () => {
-    return (<h1>HOMEPAGE</h1>)
+
+
+
+class Homepage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
+
+
+
+    render() {
+
+
+
+        return (
+            <>
+                <h2>HOMEPAGE</h2>
+
+            </>
+        )
+    }
 }
 
 export default Homepage

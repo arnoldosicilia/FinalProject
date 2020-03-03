@@ -34,7 +34,8 @@ module.exports = app => {
         origin: (origin, cb) => {
             const originWhitelisted = whitelist.includes(origin)
             cb(null, originWhitelisted)
-        }
+        },
+        credentials: true
     }
     app.use(cors(corsOptions))
 

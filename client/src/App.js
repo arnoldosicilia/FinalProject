@@ -22,6 +22,9 @@ class App extends Component {
 
   }
 
+  componentDidMount = () => this.fetchUser()
+
+
   setTheUser = userObj => this.setState({ loggedInUser: userObj })
 
   fetchUser = () => {
@@ -34,12 +37,12 @@ class App extends Component {
 
   render() {
 
+
     return (
       <>
-        <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />/>
-
+        <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
         <Switch>
-          <Route exact path="/" render={() => <Homepage />} />
+          <Route exact path="/" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />

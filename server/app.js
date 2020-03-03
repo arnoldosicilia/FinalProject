@@ -20,7 +20,7 @@ require('./configs/session.config')(app)
 
 //Base URLs
 app.use('/api/auth', require('./routes/auth.routes'));
-app.use('/offer', require('./routes/offer.routes'));
+app.use('/api/offer', require('./routes/offer.routes'));
 
 
 module.exports = app;

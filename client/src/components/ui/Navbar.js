@@ -25,8 +25,6 @@ class NavBar extends Component {
 
     render() {
 
-        const greeting = this.props.loggedInUser ? <>Hola, {this.props.loggedInUser.username}</> : <>Hola, invitad@</>
-
         return (
 
             this.props.loggedInUser ?
@@ -37,7 +35,7 @@ class NavBar extends Component {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
                                 <Nav.Link as="div"> <Link to="/">Inicio</Link></Nav.Link>
-                                <Nav.Link as="div"> <Link to="/profile">Perfil</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/profile">{this.props.loggedInUser.username}</Link></Nav.Link>
                                 <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

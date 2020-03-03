@@ -2,8 +2,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const offerSchema = new Schema({
-  name: String,
-  description: String
+
+  brand: String,
+  model: String,
+  size: Number,
+  type: {
+    type: String,
+    enum: ['Skis', 'Snowboard',],
+    default: 'Skis'
+  },
+  images: Array,
+  description: String,
+  ownerName: String,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' },
+
 }, {
   timestamps: {
     createdAt: 'created_at',

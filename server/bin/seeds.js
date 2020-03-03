@@ -29,6 +29,10 @@ let users = [
   }
 ]
 
+let offer = [
+  {}
+]
+
 User.deleteMany()
   .then(() => {
     return User.create(users)
