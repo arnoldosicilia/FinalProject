@@ -9,7 +9,7 @@ export default class Services {
         })
     }
 
-    getAllOffers = () => this.service.post('/getAllOffers').then(response => response.data)
+    getAllOffers = () => this.service.get('/getAllOffers').then(response => response.data)
     getOneOffer = id => this.service.post(`/getOneOffer/${id}`).then(response => response.data)
     createNewOffer = offer => this.service.post(`/new`, offer).then(response => response.data)
 

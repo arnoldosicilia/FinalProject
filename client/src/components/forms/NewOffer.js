@@ -6,12 +6,14 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 import OfferServices from '../../services/offer.services'
+import FilesServices from '../../services/file.services'
 
 
 class NewOfferForm extends Component {
     constructor(props) {
         super(props)
         this.offerServices = new OfferServices()
+        this.filesServices = new FilesServices()
         this.state = {
             offer: {
                 brand: '',
@@ -19,7 +21,7 @@ class NewOfferForm extends Component {
                 size: '',
                 type: '',
                 description: '',
-                images: []
+                image: '',
             }
 
 
@@ -48,18 +50,19 @@ class NewOfferForm extends Component {
     }
 
 
-    // handleFileUpload = e => {
-    //     const uploadData = new FormData()
-    //     uploadData.append("imageUrl", e.target.files[0])
-    //     this.filesServices.handleUpload(uploadData)
-    //         .then(response => {
-    //             console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.secure_url)
-    //             this.setState({
-    //                 coaster: { ...this.state.coaster, imageUrl: response.secure_url }
-    //             })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+    handleFileUpload = e => {
+        const uploadData = new FormData()
+        uploadData.append("image", e.target.files[0])
+        this.filesServices.handleUpload(uploadData)
+            .then(response => {
+                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.secure_url)
+                this.setState({
+                    offer: { ...this.state.offer, image: response.secure_url }
+                })
+                console.log(this.state.offer)
+            })
+            .catch(err => console.log(err))
+    }
 
 
     render() {
@@ -114,7 +117,7 @@ class NewOfferForm extends Component {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Imagen</Form.Label>
-                    <Form.Control type="file" name="imageUrl" onChange={this.handleFileUpload} />
+                    <Form.Control type="file" name="image" onChange={this.handleFileUpload} />
                     {/* <Form.Control type="text" name="imageUrl" value={this.state.coaster.imageUrl} onChange={this.handleChange} /> */}
                 </Form.Group>
 

@@ -4,6 +4,7 @@ const router = express.Router();
 const Offer = require('../models/offer.model')
 
 router.get('/getAllOffers', (req, res, next) => {
+    console.log("---------------llega al back!")
     Offer.find()
         .then(allOffers => res.json(allOffers))
         .catch(err => console.log(err))
@@ -24,7 +25,8 @@ router.post('/new', (req, res, next) => {
         type: req.body.type,
         description: req.body.description,
         ownerName: req.user.username,
-        owner: req.user._id
+        owner: req.user._id,
+        image: req.body.image,
     }
 
     Offer.create(newOffer)

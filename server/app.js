@@ -21,6 +21,7 @@ require('./configs/session.config')(app)
 //Base URLs
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/offer', require('./routes/offer.routes'));
+app.use('/api/files', require('./routes/files.routes'));
 
 
 module.exports = app;

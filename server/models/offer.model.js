@@ -11,7 +11,7 @@ const offerSchema = new Schema({
     enum: ['Skis', 'Snowboard',],
     default: 'Skis'
   },
-  images: Array,
+  image: String,
   description: String,
   ownerName: String,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
