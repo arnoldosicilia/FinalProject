@@ -4,7 +4,6 @@ const router = express.Router();
 const Offer = require('../models/offer.model')
 
 router.get('/getAllOffers', (req, res, next) => {
-    console.log("---------------llega al back!")
     Offer.find()
         .then(allOffers => res.json(allOffers))
         .catch(err => console.log(err))
@@ -17,7 +16,6 @@ router.get('/getOneOffer/:id', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
-    console.log('LLEGA AL BACKKKK', req.body)
     const newOffer = {
         brand: req.body.brand,
         model: req.body.model,
@@ -33,4 +31,14 @@ router.post('/new', (req, res, next) => {
         .then(theOffer => res.json(theOffer))
         .catch(err => console.log(err))
 })
+
+router.get('/owner/:ownerId', (req, res, netx) => {
+
+    Offer.find({ owner: req.params.ownerId })
+        .then(theOffers => res.json(theOffers))
+        .catch(err => console.log(err))
+
+})
+
+
 module.exports = router;

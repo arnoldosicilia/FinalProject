@@ -10,6 +10,7 @@ const userSchema = new Schema({
     default: 'User'
 
   },
+  image: String,
   offersOwned: [{ type: Schema.Types.ObjectId, ref: 'Offer' }],
   offersRented: [{ type: Schema.Types.ObjectId, ref: 'Offer' }]
 }, {

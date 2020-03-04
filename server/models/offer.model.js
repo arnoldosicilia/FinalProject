@@ -13,6 +13,7 @@ const offerSchema = new Schema({
   },
   image: String,
   description: String,
+  price: Number,
   ownerName: String,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
 
