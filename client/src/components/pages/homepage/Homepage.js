@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import OfferCard from '../cards/OfferCard'
+import OfferCard from '../../cards/OfferCard'
 
 
-import OfferServices from '../../services/offer.services'
+import OfferServices from '../../../services/offer.services'
 
 
 class Homepage extends Component {

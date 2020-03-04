@@ -23,29 +23,26 @@ class NewOfferForm extends Component {
                 description: '',
                 image: '',
             }
-
-
         }
-
     }
 
-    handleChange = e => {
 
+    handleChange = e => {
         let { name, value, } = e.target
         this.setState({ offer: { ...this.state.offer, [name]: value } })
     }
 
 
     handleSubmit = e => {
-
         e.preventDefault()
         this.postOffer()
+        this.props.finishModal()
     }
 
 
     postOffer = () => {
         this.offerServices.createNewOffer(this.state.offer)
-            .then(newOffer => console.log(newOffer))
+            .then()
             .catch(err => console.log('error al postear la nueva oferta', err))
     }
 
@@ -54,13 +51,7 @@ class NewOfferForm extends Component {
         const uploadData = new FormData()
         uploadData.append("image", e.target.files[0])
         this.filesServices.handleUpload(uploadData)
-            .then(response => {
-                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.secure_url)
-                this.setState({
-                    offer: { ...this.state.offer, image: response.secure_url }
-                })
-                console.log(this.state.offer)
-            })
+            .then(response => { this.setState({ offer: { ...this.state.offer, image: response.secure_url } }) })
             .catch(err => console.log(err))
     }
 
@@ -89,7 +80,7 @@ class NewOfferForm extends Component {
                         </Form.Group>
                     </Col>
                 </Row>
-
+                <br />
                 <Form.Group>
                     <Row>
                         <Col>
@@ -115,12 +106,17 @@ class NewOfferForm extends Component {
                         </Col>
                     </Row>
                 </Form.Group>
+                <br />
                 <Form.Group>
                     <Form.Label>Imagen</Form.Label>
                     <Form.Control type="file" name="image" onChange={this.handleFileUpload} />
-                    {/* <Form.Control type="text" name="imageUrl" value={this.state.coaster.imageUrl} onChange={this.handleChange} /> */}
                 </Form.Group>
-
+                <br />
+                <Form.Group>
+                    <Form.Label>Description:</Form.Label>
+                    <Form.Control placeholder="Add a brief description if your material" name="description" value={this.state.offer.descfiption} onChange={this.handleChange} />
+                </Form.Group>
+                <br />
                 <Button variant="dark" type="submit">Create</Button>
 
             </Form>

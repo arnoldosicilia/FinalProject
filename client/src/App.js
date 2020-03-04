@@ -5,11 +5,13 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 
 import Navbar from './components/ui/Navbar'
-import Homepage from './components/pages/Homepage'
+import Homepage from './components/pages/homepage/Homepage'
 
-import Signup from './components/pages/Signup'
-import Login from './components/pages/Login'
-import Profile from './components/pages/Profile'
+import Signup from './components/pages/signup/Signup'
+import Login from './components/pages/login/Login'
+import Profile from './components/pages/profile/Profile'
+
+import OfferDetails from './components/pages/offerDetails/OfferDetails'
 
 import AuthServices from './services/auth.services'
 
@@ -34,7 +36,6 @@ class App extends Component {
   }
 
 
-
   render() {
 
 
@@ -46,6 +47,7 @@ class App extends Component {
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          <Route path="/offerDetails/:_id" render={props => <OfferDetails {...props} loggedInUser={this.state.loggedInUser} />} />
         </Switch>
       </>
     );

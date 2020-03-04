@@ -1,0 +1,13 @@
+.offerCard{
+    margin-bottom: 15px;
+}
+
+.offerCard p {
+    font-size: 0.5em;
+}
+
+.offerCard img {
+
+    height: 200px;
+    object-fit: cover;
+}
