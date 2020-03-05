@@ -36,7 +36,7 @@ class OfferDetails extends Component {
 
     }
 
-    checkTheOwner = () => this.props.loggedInUser._id === this.state.offer.owner && this.props.loggedInUser._id != undefined ? this.setState({ isTheOwner: true }) : this.setState({ isTheOwner: false })
+    checkTheOwner = () => this.props.loggedInUser._id === this.state.offer.owner && this.props.loggedInUser._id !== undefined ? this.setState({ isTheOwner: true }) : this.setState({ isTheOwner: false })
 
 
     render() {

@@ -42,8 +42,12 @@ let offers = [
     type: 'Snowboard',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg'
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg'
+    ]
   }
   ,
   {
@@ -53,8 +57,12 @@ let offers = [
     type: 'Snowboard',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg'
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg'
+    ]
   }
   ,
   {
@@ -64,8 +72,12 @@ let offers = [
     type: 'Snowboard',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271745/offers/Burton-kilroy.jpg.jpg'
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271745/offers/Burton-kilroy.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg'
+    ]
   }
   ,
   {
@@ -75,8 +87,12 @@ let offers = [
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271113/offers/Salomon%20-%20Race%20Shot.jpeg.jpg'
+    image: [
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271113/offers/Salomon%20-%20Race%20Shot.jpeg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271113/offers/Salomon%20-%20Race%20Shot.jpeg.jpg']
   }
   ,
   {
@@ -86,8 +102,12 @@ let offers = [
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg'
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg'
+    ]
   }
   ,
   {
@@ -97,8 +117,39 @@ let offers = [
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
+    location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: 'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg'
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg']
+  }, {
+    brand: 'Rossignol',
+    model: 'Hero',
+    size: 177,
+    type: 'Skis',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
+    price: 10,
+    location: 'Formigal',
+    ownerName: 'Arnoldo',
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg'
+    ]
+  }
+  ,
+  {
+    brand: 'Elan',
+    model: 'SLX',
+    size: 174,
+    type: 'Skis',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
+    price: 10,
+    location: 'Formigal',
+    ownerName: 'Arnoldo',
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg'
+    ]
   }
 ]
 

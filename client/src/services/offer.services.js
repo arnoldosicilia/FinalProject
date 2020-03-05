@@ -13,5 +13,6 @@ export default class Services {
     getOneOffer = id => this.service.get(`/getOneOffer/${id}`).then(response => response.data)
     getOfferByOwner = ownerId => this.service.get(`/owner/${ownerId}`).then(response => response.data)
     createNewOffer = offer => this.service.post(`/new`, offer).then(response => response.data)
+    getOffersByLocation = location => this.service.get(`/getOffersByLocation/${location}`).then(response => response.data)
 
 }

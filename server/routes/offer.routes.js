@@ -41,4 +41,14 @@ router.get('/owner/:ownerId', (req, res, netx) => {
 })
 
 
+router.get('/getOffersByLocation/:location', (req, res, netx) => {
+
+    console.log('se llama al back')
+    Offer.find({ location: req.params.location })
+        .then(theOffers => res.json(theOffers))
+        .catch(err => console.log(err))
+
+})
+
+
 module.exports = router;

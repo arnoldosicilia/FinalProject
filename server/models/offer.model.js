@@ -11,8 +11,14 @@ const offerSchema = new Schema({
     enum: ['Skis', 'Snowboard',],
     default: 'Skis'
   },
-  image: String,
+  location: {
+    type: String,
+    enum: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada',],
+    default: 'Baqueira'
+  },
+  image: Array,
   description: String,
+
   price: Number,
   ownerName: String,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
