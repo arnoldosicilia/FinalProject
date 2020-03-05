@@ -6,6 +6,8 @@ import OfferServices from '../../../services/offer.services'
 
 
 import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
+
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
@@ -45,7 +47,7 @@ class OfferDetails extends Component {
 
                 <h1>Formulario de Edición</h1>
 
-                {this.state.isTheOwner && <Button>Editar</Button>}
+
                 <Row>
                     <Col>
                         <figure className='offerDetails'>
@@ -53,6 +55,7 @@ class OfferDetails extends Component {
                         </figure>
                     </Col>
                     <Col>
+                        <Form></Form>
                         <h2>Brand: {this.state.offer.brand}</h2>
                         <h2>Model: {this.state.offer.model}</h2>
                         <h2>Size: {this.state.offer.size}</h2>
