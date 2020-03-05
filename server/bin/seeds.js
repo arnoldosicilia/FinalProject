@@ -13,7 +13,7 @@ const Offer = require("../models/offer.model")
 const bcryptSalt = 10;
 
 mongoose
-  .connect(`${process.env.DB}`, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(`${process.env.DB_REMOTE}`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
