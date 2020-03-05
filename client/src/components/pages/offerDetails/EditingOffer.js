@@ -4,7 +4,6 @@ import './OfferDetails.css'
 
 import OfferServices from '../../../services/offer.services'
 
-import { Link } from 'react-router-dom'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -27,14 +26,11 @@ class OfferDetails extends Component {
     }
 
 
-
-
-
     getTheOffer = () => {
-        console.log('----Se llama al get the offer---')
         this.offerServices.getOneOffer(this.props.match.params._id)
             .then(Offer => this.setState({ offer: Offer }))
             .catch(err => console.log(err))
+
     }
 
     checkTheOwner = () => this.props.loggedInUser._id === this.state.offer.owner && this.props.loggedInUser._id !== undefined ? this.setState({ isTheOwner: true }) : this.setState({ isTheOwner: false })
@@ -42,18 +38,14 @@ class OfferDetails extends Component {
 
     render() {
 
-        console.log('------State----', this.state.isTheOwner)
-
-        console.log('------StatOwner----', this.state.offer)
-
-        console.log('-logedinuser--', this.props.loggedInUser)
-
-        const edit = `/edit/${this.state.offer._id}`
 
         return (
             <>
 
-                {this.state.isTheOwner && <Button><Link to={edit}> Editar</Link></Button>}
+
+                <h1>Formulario de Edición</h1>
+
+                {this.state.isTheOwner && <Button>Editar</Button>}
                 <Row>
                     <Col>
                         <figure className='offerDetails'>
@@ -85,4 +77,3 @@ class OfferDetails extends Component {
 }
 
 export default OfferDetails
-
