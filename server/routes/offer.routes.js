@@ -16,6 +16,8 @@ router.get('/getOneOffer/:id', (req, res, next) => {
 })
 
 router.post('/new', (req, res, next) => {
+    // const { brand, model} = 
+    // const 
     const newOffer = {
         brand: req.body.brand,
         model: req.body.model,
@@ -40,14 +42,28 @@ router.get('/owner/:ownerId', (req, res, netx) => {
 
 })
 
-
 router.get('/getOffersByLocation/:location', (req, res, netx) => {
 
     Offer.find({ location: req.params.location })
         .then(theOffers => res.json(theOffers))
         .catch(err => console.log(err))
-
 })
+
+
+
+router.post('/updateOneOffer', (req, res, next) => {
+
+    const { brand, model, size, type, description, image, price } = req.body
+    const updatedOffer = { brand, model, size, type, description, image, price }
+    updatedOffer.owner = req.user._id
+    updatedOffer.ownerName = req.user.username
+
+    Offer.findByIdAndUpdate(req.body._id, updatedOffer, { new: true })
+        .then(updatedOffer => res.json(updatedOffer))
+        .catch(err => console.log(err))
+})
+
+
 
 
 module.exports = router;

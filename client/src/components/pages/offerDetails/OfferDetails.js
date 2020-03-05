@@ -21,32 +21,25 @@ class OfferDetails extends Component {
         this.offerServices = new OfferServices()
     }
 
-    componentDidMount = () => {
-        this.getTheOffer()
-        this.checkTheOwner()
-    }
+    componentDidMount = () => this.getTheOffer()
 
 
-
-
-
+    //Brigns the offer from the DB and check if the owner is the same as the logged user
     getTheOffer = () => {
-        console.log('----Se llama al get the offer---')
+
         this.offerServices.getOneOffer(this.props.match.params._id)
-            .then(Offer => this.setState({ offer: Offer }))
+            .then(Offer => this.checkTheOwner(Offer))
             .catch(err => console.log(err))
     }
 
-    checkTheOwner = () => this.props.loggedInUser._id === this.state.offer.owner && this.props.loggedInUser._id !== undefined ? this.setState({ isTheOwner: true }) : this.setState({ isTheOwner: false })
+    checkTheOwner = Offer => this.props.loggedInUser._id === Offer.owner ? this.setState({ isTheOwner: true, offer: Offer }) : this.setState({ isTheOwner: false, offer: Offer })
+
+
 
 
     render() {
 
-        console.log('------State----', this.state.isTheOwner)
-
-        console.log('------StatOwner----', this.state.offer)
-
-        console.log('-logedinuser--', this.props.loggedInUser)
+        console.log(this.state.offer.image)
 
         const edit = `/edit/${this.state.offer._id}`
 
@@ -57,7 +50,7 @@ class OfferDetails extends Component {
                 <Row>
                     <Col>
                         <figure className='offerDetails'>
-                            <img src={this.state.offer.image} alt={this.state.offer.model} />
+                            {this.state.offer.image && <img src={this.state.offer.image[0]} alt={this.state.offer.model} />}
                         </figure>
                     </Col>
                     <Col>

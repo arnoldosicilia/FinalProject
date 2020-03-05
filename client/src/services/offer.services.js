@@ -14,5 +14,8 @@ export default class Services {
     getOfferByOwner = ownerId => this.service.get(`/owner/${ownerId}`).then(response => response.data)
     createNewOffer = offer => this.service.post(`/new`, offer).then(response => response.data)
     getOffersByLocation = location => this.service.get(`/getOffersByLocation/${location}`).then(response => response.data)
+    updateOneOffer = updatedOffer => this.service.post(`/updateOneOffer`, updatedOffer).then(response => response.data)
+
+
 
 }

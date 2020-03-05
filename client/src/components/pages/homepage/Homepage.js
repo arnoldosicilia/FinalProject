@@ -6,9 +6,12 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 import OfferCard from '../../cards/OfferCard'
+import Map from '../../maps/HompageMap'
 
 
 import OfferServices from '../../../services/offer.services'
+
+
 
 
 class Homepage extends Component {
@@ -18,10 +21,20 @@ class Homepage extends Component {
         this.state = {
             showmodal: true,
             location: '',
-            offersArr: []
+            offersArr: [],
+
+
+
 
         }
     }
+
+    // locations = {
+    //     'Baqueira': { latitude: 42.699659, longitude: 0.933011 },
+    //     'Formigal': { latitude: 42.775447, longitude: -0.371188 },
+    //     'Andorra': { latitude: 42.543899, longitude: 1.733701 },
+    //     'Sierra Nevada': { latitude: 37.093798, longitude: -3.399168 }
+    // }
 
 
     closeModal = e => {
@@ -31,21 +44,15 @@ class Homepage extends Component {
     }
 
 
-
     getOffers = () => {
-        console.log(this.state.location)
         this.offerServices.getOffersByLocation(this.state.location)
-            .then(allOffers => {
-                console.log(allOffers)
-                this.setState({ offersArr: allOffers })
-            })
+            .then(allOffers => this.setState({ offersArr: allOffers }))
             .catch(err => console.log(err))
     }
 
-    setLocation = e => {
-        console.log(e.target.value)
-        this.setState({ location: e.target.value })
-    }
+
+    setLocation = e => this.setState({ location: e.target.value })
+
 
     render() {
 
@@ -83,7 +90,7 @@ class Homepage extends Component {
                         {this.state.offersArr.map((elm, idx) => <OfferCard key={idx} {...elm} />)}
                     </Col>
                     <Col>
-                        <h1>MAPA</h1>
+                        <Map center={this.state.location} />
                     </Col>
                 </Row>
             </>
