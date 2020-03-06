@@ -7,6 +7,7 @@ export default class Services {
             baseURL: `${process.env.REACT_APP_URL}/offer`,
             withCredentials: true,
         })
+
     }
 
     getAllOffers = () => this.service.get('/getAllOffers').then(response => response.data)

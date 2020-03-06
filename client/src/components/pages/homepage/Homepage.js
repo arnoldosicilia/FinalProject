@@ -22,10 +22,6 @@ class Homepage extends Component {
             showmodal: true,
             location: '',
             offersArr: [],
-
-
-
-
         }
     }
 
@@ -40,23 +36,27 @@ class Homepage extends Component {
     closeModal = e => {
         this.setLocation(e)
         this.setState({ showmodal: false })
-        setTimeout(() => this.getOffers(), 10)   //No estaba cogiendo el this.state.location 
     }
 
 
-    getOffers = () => {
-        this.offerServices.getOffersByLocation(this.state.location)
-            .then(allOffers => this.setState({ offersArr: allOffers }))
+    getOffers = location => {
+        this.offerServices.getOffersByLocation(location)
+            .then(allOffers => {
+                this.setState({ offersArr: allOffers, location: location })
+            })
             .catch(err => console.log(err))
     }
 
 
-    setLocation = e => this.setState({ location: e.target.value })
+    setLocation = e => {
+        this.getOffers(e.target.value)
+    }
+
 
 
     render() {
 
-
+        console.log(this.state.offersArr)
         return (
 
 
@@ -87,10 +87,17 @@ class Homepage extends Component {
 
                 <Row>
                     <Col>
-                        {this.state.offersArr.map((elm, idx) => <OfferCard key={idx} {...elm} />)}
+                        {this.state.offersArr.length > 0 && this.state.offersArr.map((elm, idx) => <OfferCard key={idx} {...elm} />)}
                     </Col>
                     <Col>
-                        <Map center={this.state.location} />
+                        {this.state.offersArr.length > 0 &&
+                            <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
+                                loadingElement={<div style={{ height: "100%" }} />}
+                                containerElement={<div style={{ height: "100%" }} />}
+                                mapElement={<div style={{ height: "100%" }} />}
+                                offers={this.state.offersArr}
+                                center={this.state.location}
+                            />}
                     </Col>
                 </Row>
             </>
