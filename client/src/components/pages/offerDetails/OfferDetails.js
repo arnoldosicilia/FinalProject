@@ -1,24 +1,39 @@
 import React, { Component } from 'react'
+// import Calendar from 'react-calendar'
 
 import './OfferDetails.css'
 
 import OfferServices from '../../../services/offer.services'
+import ReservationServices from '../../../services/reservation.services'
+import Calendar from '../../ui/Calendar'
 
 import { Link } from 'react-router-dom'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+
 
 
 class OfferDetails extends Component {
     constructor(props) {
         super(props)
+        this.offerServices = new OfferServices()
+        this.reservationServices = new ReservationServices()
         this.state = {
             offer: {},
-            isTheOwner: null
+            isTheOwner: null,
+            reservation: {
+                startDate: new Date(),
+                finishDate: new Date(),
+            },
+            buttons: {
+                startDateShown: false,
+                finishDateShown: false
+
+            }
         }
-        this.offerServices = new OfferServices()
     }
 
     componentDidMount = () => this.getTheOffer()
@@ -35,13 +50,65 @@ class OfferDetails extends Component {
     checkTheOwner = Offer => this.props.loggedInUser._id === Offer.owner ? this.setState({ isTheOwner: true, offer: Offer }) : this.setState({ isTheOwner: false, offer: Offer })
 
 
+    //Date Methods
+    // startDate = value => {
+
+    //     this.setState({
+    //         reservation: {
+    //             ...this.state.reservation,
+    //             startDate: value
+    //         }
+
+    //     })
+    // }
+
+    // finishDate = value => {
+
+    //     this.setState({
+    //         reservation: {
+    //             ...this.state.reservation,
+    //             finishDate: value
+    //         }
+
+    //     })
+    // }
+
+
+    setReservation = ({ startDate, endDate }) => this.setState({ reservation: { startDate, endDate } })
+
+
+
+
+    createReservation = () => {
+
+        console.log('Llamando a createReservation', this.state.offer)
+
+        let newReservation = {
+            startDate: this.state.reservation.startDate,
+            endDate: this.state.reservation.endDate,
+            ownerId: this.state.offer.owner,
+            offerId: this.state.offer._id
+        }
+
+
+
+        this.reservationServices.createNewReservation(newReservation)
+            .then(response => console.log('se ha creado la reserva', response))
+            .catch(err => console.log(err))
+    }
+
+
 
 
     render() {
 
-        console.log(this.state.offer.image)
+        // console.log("Al renderizar......", JSON.stringify(this.state.reservation.startDate))
 
         const edit = `/edit/${this.state.offer._id}`
+        console.log("Al REnderizae", this.state)
+
+
+
 
         return (
             <>
@@ -62,12 +129,43 @@ class OfferDetails extends Component {
 
                         <Row>
                             <Col>
-                                <br />
-                                <Button>Check Availability</Button>
+                                <Calendar
+                                    setReservation={this.setReservation}
+                                    reservations={this.state.offer.reservations}
+                                />
+
+                                {/* <h3>Start Date</h3>
+
+
+                                {this.state.reservation.startDate && <h5>{JSON.stringify(this.state.reservation.startDate)}</h5>}
+                                <DropdownButton title="Select a startDate">
+                                    <Calendar
+                                        id="startDate"
+                                        onChange={this.startDate}
+                                        value={this.state.reservation.startDate}
+                                    />
+                                </DropdownButton>
+
+                            </Col>
+
+
+                            <Col>
+                                <h3>Finish Date</h3>
+                                {this.state.reservation.finishDate && <h5>{JSON.stringify(this.state.reservation.finishDate)}</h5>}
+                                <h5>Poner aqui la fecha</h5>
+                                <DropdownButton title="Select a finishDate">
+                                    <Calendar
+                                        id="finishDate"
+                                        onChange={this.finishDate}
+                                        value={this.state.finishDate}
+                                    />
+                                </DropdownButton> */}
+
+
                             </Col>
                             <Col>
-                                <h6>Any question?</h6>
-                                <Button>Contact with the owner</Button>
+                                <h6>Create Reservation</h6>
+                                <Button onClick={this.createReservation}>Create</Button>
                             </Col>
                         </Row>
                     </Col>

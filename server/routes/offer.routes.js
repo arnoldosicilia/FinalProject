@@ -10,10 +10,16 @@ router.get('/getAllOffers', (req, res, next) => {
 })
 
 router.get('/getOneOffer/:id', (req, res, next) => {
+
     Offer.findById(req.params.id)
+        .populate('reservations')
         .then(theOffer => res.json(theOffer))
         .catch(err => console.log(err))
+
+
 })
+
+
 
 router.post('/new', (req, res, next) => {
     // const { brand, model} = 
@@ -51,12 +57,16 @@ router.get('/getOffersByLocation/:location', (req, res, netx) => {
 
 
 
+//UpdateAnOffer
+
 router.post('/updateOneOffer', (req, res, next) => {
 
     const { brand, model, size, type, description, image, price } = req.body
     const updatedOffer = { brand, model, size, type, description, image, price }
     updatedOffer.owner = req.user._id
     updatedOffer.ownerName = req.user.username
+
+
 
     Offer.findByIdAndUpdate(req.body._id, updatedOffer, { new: true })
         .then(updatedOffer => res.json(updatedOffer))

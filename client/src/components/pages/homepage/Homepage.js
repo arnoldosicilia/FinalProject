@@ -7,9 +7,11 @@ import Modal from 'react-bootstrap/Modal'
 
 import OfferCard from '../../cards/OfferCard'
 import Map from '../../maps/HompageMap'
+import Filters from '../../ui/Filters'
 
 
 import OfferServices from '../../../services/offer.services'
+import ReservationServices from '../../../services/reservation.services'
 
 
 
@@ -18,19 +20,20 @@ class Homepage extends Component {
     constructor(props) {
         super(props)
         this.offerServices = new OfferServices()
+        this.reservationServices = new ReservationServices()
         this.state = {
             showmodal: true,
-            location: '',
+            filters: {
+                location: '',
+                startDate: '',
+                finishDate: '',
+            },
+
             offersArr: [],
+            locations: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada']
         }
     }
 
-    // locations = {
-    //     'Baqueira': { latitude: 42.699659, longitude: 0.933011 },
-    //     'Formigal': { latitude: 42.775447, longitude: -0.371188 },
-    //     'Andorra': { latitude: 42.543899, longitude: 1.733701 },
-    //     'Sierra Nevada': { latitude: 37.093798, longitude: -3.399168 }
-    // }
 
 
     closeModal = e => {
@@ -39,24 +42,35 @@ class Homepage extends Component {
     }
 
 
+    //Offers Methods
     getOffers = location => {
         this.offerServices.getOffersByLocation(location)
             .then(allOffers => {
-                this.setState({ offersArr: allOffers, location: location })
+                this.setState({ offersArr: allOffers, filter: { location: location } })
             })
             .catch(err => console.log(err))
     }
 
 
-    setLocation = e => {
-        this.getOffers(e.target.value)
+    // // Filter Methods
+    // Location
+    setLocation = e => this.getOffers(e.target.value)
+    changeLocation = location => {
+        console.log('se ha llamado con el siguiente valor', location)
+        this.getOffers(location)
     }
+
+    //Dates
+    changeStartDate = date => this.setState({ startDate: date })
+    changeFinishDate = date => this.setState({ startDate: date })
+
+
+
 
 
 
     render() {
 
-        console.log(this.state.offersArr)
         return (
 
 
@@ -68,21 +82,22 @@ class Homepage extends Component {
                         <h3>What is your ski Location?</h3>
                         <hr></hr>
                         <Row>
-                            <Col>
-                                <Button variant="outline-primary" onClick={this.closeModal} value='Baqueira'>Baqueira</Button>
-                            </Col>
-                            <Col>
-                                <Button variant="outline-primary" onClick={this.closeModal} value='Andorra'>Andorra</Button>
-                            </Col>
-                            <Col>
-                                <Button variant="outline-primary" onClick={this.closeModal} value='Formigal'>Formigal</Button>
-                            </Col>
-                            <Col>
-                                <Button variant="outline-primary" onClick={this.closeModal} value='Sierra Nevada'>Sierra Nevada</Button>
-                            </Col>
+                            {this.state.locations.map((elm, idx) => {
+                                return (
+                                    <Col key={idx}>
+                                        <Button variant="outline-primary" onClick={this.closeModal} value={elm}>{elm}</Button>
+                                    </Col>)
+                            })}
                         </Row>
                     </Modal.Body>
                 </Modal>
+
+                <Filters
+                    changeLocation={this.changeLocation}
+                    locations={this.state.locations}
+                    changeStartDate={this.changeStartDate}
+                    changeFinish Date={this.changeStartDate}
+                />
 
 
                 <Row>
@@ -96,7 +111,7 @@ class Homepage extends Component {
                                 containerElement={<div style={{ height: "100%" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 offers={this.state.offersArr}
-                                center={this.state.location}
+                                center={this.state.filter.location}
                             />}
                     </Col>
                 </Row>

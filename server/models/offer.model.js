@@ -16,6 +16,7 @@ const offerSchema = new Schema({
     enum: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada',],
     default: 'Baqueira'
   },
+  reservations: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }],
   direction: String,
   image: Array,
   description: String,
