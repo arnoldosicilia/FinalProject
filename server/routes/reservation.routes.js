@@ -7,10 +7,10 @@ const Offer = require('../models/offer.model')
 router.post('/new', (req, res, next) => {
 
 
-    const { startDate, finishDate, ownerId, offerId } = req.body
+    const { startDate, endDate, ownerId, offerId } = req.body
     const newReservation = {
         startDate,
-        finishDate,
+        endDate,
         ownerId,
         clientId: req.user._id,
         offerId,

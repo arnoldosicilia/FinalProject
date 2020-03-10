@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema({
   startDate: Date,
-  finishDate: Date,
+  endDate: Date,
   ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
   clientId: { type: Schema.Types.ObjectId, ref: 'User' },
   offerId: { type: Schema.Types.ObjectId, ref: 'Offer' },

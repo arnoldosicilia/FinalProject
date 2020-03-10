@@ -81,8 +81,6 @@ class OfferDetails extends Component {
 
     createReservation = () => {
 
-        console.log('Llamando a createReservation', this.state.offer)
-
         let newReservation = {
             startDate: this.state.reservation.startDate,
             endDate: this.state.reservation.endDate,
@@ -105,10 +103,6 @@ class OfferDetails extends Component {
         // console.log("Al renderizar......", JSON.stringify(this.state.reservation.startDate))
 
         const edit = `/edit/${this.state.offer._id}`
-        console.log("Al REnderizae", this.state)
-
-
-
 
         return (
             <>
