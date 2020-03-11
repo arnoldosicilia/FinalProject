@@ -133,10 +133,10 @@ class OfferDetails extends Component {
                                     setCalendarMessage={this.setCalendarMessage}
                                 />
                             </Col>
-                            {this.state.calendarMessage && <h3>{this.state.calendarMessage}</h3>}
+                            {this.state.calendarMessage ? <p>{this.state.calendarMessage}</p> : <p>Por favor selecciona una fecha...</p>}
                             <Col>
                                 <h6>Create Reservation</h6>
-                                <Button onClick={this.createReservation}>Create</Button>
+                                <Button onClick={this.createReservation}>Creat>e</Button>
                             </Col>
                         </Row>
                     </Col>

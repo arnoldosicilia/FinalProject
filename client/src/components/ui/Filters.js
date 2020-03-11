@@ -62,13 +62,7 @@ class Filters extends Component {
 
                 <Row>
                     <Col>
-                        <DropdownButton title="Select a startDate">
-                            <Calendar
-                                id='startDate'
-                                onChange={this.startDate}
-                                value={this.state.startDate}
-                            />
-                        </DropdownButton>
+                        <Button title='Sort by Size' onClick={this.props.sortBySize}></Button>
                     </Col>
                     <Col>
                         <DropdownButton title="Select a finishDate">

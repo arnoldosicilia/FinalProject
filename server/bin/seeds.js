@@ -13,7 +13,7 @@ const Offer = require("../models/offer.model")
 const bcryptSalt = 10;
 
 mongoose
-  .connect(`${process.env.DB_REMOTE}`, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(`${process.env.DB_LOCAL}`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -36,121 +36,91 @@ let users = [
 
 let offers = [
   {
-    brand: 'Burton',
-    model: 'Instigator',
-    size: 161,
-    type: 'Snowboard',
+    brand: 'Atomic',
+    model: 'G-H',
+    size: 181,
+    type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
     location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg'
-    ]
-  }
-  ,
-  {
-    brand: 'Burton',
-    model: 'Circuit',
-    size: 158,
-    type: 'Snowboard',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
-    price: 10,
-    location: 'Baqueira',
-    ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271664/offers/Burton%20Instigator.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg'
-    ]
-  }
-  ,
-  {
-    brand: 'Burton',
-    model: 'Kilroy',
-    size: 146,
-    type: 'Snowboard',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
-    price: 10,
-    location: 'Baqueira',
-    ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271745/offers/Burton-kilroy.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg'
-    ]
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/001Atomic_Front_181_l0f3hu.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/001Atomic_Back_pdgfye.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/001Atomic_Fijaciones_hrtipu.webp',
+    ],
+    reservations: [],
+    direction: 'Beret Cota 1500, 25598 Baqueira, Lleida',
   }
   ,
   {
     brand: 'Rossignol',
-    model: 'Race Shot',
-    size: 156,
+    model: 'Ozuna',
+    size: 160,
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
     location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: [
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271113/offers/Salomon%20-%20Race%20Shot.jpeg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583272698/offers/rossignol-circuit.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271113/offers/Salomon%20-%20Race%20Shot.jpeg.jpg']
+    image: [['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/002Rossignol_Front_160_hfa6mp.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/002Rossignol_Back_w73u9t.webp',
+    ]],
+    reservations: []
+    ,
+    direction: 'Parking Pleta Val de Ruda, Baqueira, 25598, Lleida',
   }
   ,
   {
-    brand: 'Rossignol',
-    model: 'Hero',
-    size: 177,
+    brand: 'Volki',
+    model: 'AC-Pro',
+    size: 163,
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
     location: 'Baqueira',
     ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg'
-    ]
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/003Volki_Front_163_x8vs9z.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/003Volki_ojvtkd.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946026/003Volki_Back_nog1xf.webp',
+    ],
+    reservations: [],
+    direction: 'Edificio 25598, Bonaigua Baqueira, 14, 25598 Baqueira, Lleida',
   }
   ,
   {
-    brand: 'Elan',
-    model: 'SLX',
-    size: 174,
+    brand: 'Atomic',
+    model: 'RTX',
+    size: 160,
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
-    location: 'Baqueira',
+    location: 'Andorra',
     ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg']
-  }, {
-    brand: 'Rossignol',
-    model: 'Hero',
-    size: 177,
-    type: 'Skis',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
-    price: 10,
-    location: 'Formigal',
-    ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271448/offers/Rossignol%20Hero.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg'
-    ]
-  }
-  ,
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/004Atomic_Front_160_rxtmlc.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/004Atomic_fz2xnv.webp',
+    ],
+    reservations: [],
+    direction: 'Carrer Dr. Nequi, 12, AD500 Andorra la Vella, Andorra',
+  },
   {
-    brand: 'Elan',
-    model: 'SLX',
-    size: 174,
+    brand: 'Volki',
+    model: 'VxJ',
+    size: 159,
     type: 'Skis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
     price: 10,
-    location: 'Formigal',
+    location: 'Andorra',
     ownerName: 'Arnoldo',
-    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg',
-      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583271570/offers/Elan%20SLX.jpg.jpg'
-    ]
+    image: ['https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/005Volki_Front_159_detodv.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/005Volki_model_nhzg8r.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/005Volki_Tail_zsbd5o.webp,',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/005Volki_Fijaciones_ozjxdm.webp',
+      'https://res.cloudinary.com/dbcrofsyy/image/upload/v1583946027/005Volki_Fijacion_j2awas.webp'
+
+    ],
+    reservations: [],
+    direction: 'Camí del Parc Central, AD500 Andorra la Vella, Andorra',
   }
+
 ]
 
 Offer.create(offers)

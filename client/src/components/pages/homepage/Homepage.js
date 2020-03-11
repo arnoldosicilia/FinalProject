@@ -55,14 +55,22 @@ class Homepage extends Component {
     // // Filter Methods
     // Location
     setLocation = e => this.getOffers(e.target.value)
+
     changeLocation = location => {
         console.log('se ha llamado con el siguiente valor', location)
         this.getOffers(location)
     }
 
-    //Dates
-    changeStartDate = date => this.setState({ startDate: date })
-    changeFinishDate = date => this.setState({ startDate: date })
+    sortBySize = () => {
+        const offerArrCopy = [...this.state.offersArr]
+
+        offerArrCopy.sort((a, b) => a - b)
+
+        console.log(offerArrCopy)
+
+    }
+
+
 
 
 
@@ -95,8 +103,8 @@ class Homepage extends Component {
                 <Filters
                     changeLocation={this.changeLocation}
                     locations={this.state.locations}
-                    changeStartDate={this.changeStartDate}
-                    changeFinish Date={this.changeStartDate}
+                    sortBySize={this.sortBySize}
+
                 />
 
 

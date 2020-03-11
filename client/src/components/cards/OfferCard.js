@@ -4,6 +4,7 @@ import './OfferCard.css'
 
 import { Link } from 'react-router-dom'
 
+import Carousel from 'react-bootstrap/Carousel'
 const OfferCard = props => {
 
     const direction = `/offerDetails/${props._id}`
@@ -12,9 +13,24 @@ const OfferCard = props => {
         <>
             <Link to={direction}>
                 <div className='offerCard'>
-                    <figure>
-                        <img src={props.image[0]} alt={props.model} />
-                    </figure>
+
+
+                    <Carousel>
+                        {props.image.map(elm => {
+                            return (
+                                <Carousel.Item>
+                                    <figure>
+                                        <img
+                                            src={elm}
+                                            alt={props.model}
+                                        />
+                                    </figure>
+                                </Carousel.Item>
+                            )
+                        })}
+                    </Carousel>
+
+
                     <div>
                         <h3>{props.brand}  ||  {props.model}</h3>
                         <p>{props.description}</p>
