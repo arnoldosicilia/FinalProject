@@ -31,8 +31,8 @@ class OfferDetails extends Component {
             buttons: {
                 startDateShown: false,
                 finishDateShown: false
-
-            }
+            },
+            errorMessage: ''
         }
     }
 
@@ -96,11 +96,15 @@ class OfferDetails extends Component {
     }
 
 
+    setErrorMessage = () => {
+        console.log('se llama al set error')
+        this.setState({ errorMessage: 'no se puede seleccionar esas fechas' })
 
+    }
 
     render() {
 
-        // console.log("Al renderizar......", JSON.stringify(this.state.reservation.startDate))
+        //  console.log("Al renderizar......", JSON.stringify(this.state.reservation.startDate))
 
         const edit = `/edit/${this.state.offer._id}`
 
@@ -126,37 +130,10 @@ class OfferDetails extends Component {
                                 <Calendar
                                     setReservation={this.setReservation}
                                     reservations={this.state.offer.reservations}
+                                    setErrorMessage={this.setErrorMessage}
                                 />
-
-                                {/* <h3>Start Date</h3>
-
-
-                                {this.state.reservation.startDate && <h5>{JSON.stringify(this.state.reservation.startDate)}</h5>}
-                                <DropdownButton title="Select a startDate">
-                                    <Calendar
-                                        id="startDate"
-                                        onChange={this.startDate}
-                                        value={this.state.reservation.startDate}
-                                    />
-                                </DropdownButton>
-
                             </Col>
-
-
-                            <Col>
-                                <h3>Finish Date</h3>
-                                {this.state.reservation.finishDate && <h5>{JSON.stringify(this.state.reservation.finishDate)}</h5>}
-                                <h5>Poner aqui la fecha</h5>
-                                <DropdownButton title="Select a finishDate">
-                                    <Calendar
-                                        id="finishDate"
-                                        onChange={this.finishDate}
-                                        value={this.state.finishDate}
-                                    />
-                                </DropdownButton> */}
-
-
-                            </Col>
+                            {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
                             <Col>
                                 <h6>Create Reservation</h6>
                                 <Button onClick={this.createReservation}>Create</Button>
