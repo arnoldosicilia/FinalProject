@@ -34,9 +34,9 @@ class Calendar extends Component {
 
         this.state.blockedDates && this.state.blockedDates.map((elm) => {
 
-            moment(elm).isBetween(startDate, endDate, null, []) && this.props.setErrorMessage()
+            moment(elm).isBetween(startDate, endDate, null, []) ? this.props.setCalendarMessage('Fecha incorrecta, por favor selecciona otra') : this.props.setCalendarMessage('Fecha Correcta')
 
-            startDate && startDate.isBetween(elm.startDate, elm.endDate, null, []) && console.log('Por favor cambia la fecha dde inicio ')
+            // startDate && startDate.isBetween(elm.startDate, elm.endDate, null, []) && console.log('Por favor cambia la fecha dde inicio ')
             // endDate && endDate.isBetween(elm.startDate, elm.endDate, null, []) && console.log('por favor cambia la fecha de finalizacion ')
         })
     }
@@ -79,7 +79,7 @@ class Calendar extends Component {
     }
 
 
-    isDayBlocked = () => moment('2020-03-19T11:00:00.000+00:00')
+    //isDayBlocked = () => moment('2020-03-19T11:00:00.000+00:00')
 
 
     render() {

@@ -32,7 +32,7 @@ class OfferDetails extends Component {
                 startDateShown: false,
                 finishDateShown: false
             },
-            errorMessage: ''
+            calendarMessage: ''
         }
     }
 
@@ -96,9 +96,9 @@ class OfferDetails extends Component {
     }
 
 
-    setErrorMessage = () => {
+    setCalendarMessage = Mensaje => {
         console.log('se llama al set error')
-        this.setState({ errorMessage: 'no se puede seleccionar esas fechas' })
+        this.setState({ calendarMessage: Mensaje })
 
     }
 
@@ -130,10 +130,10 @@ class OfferDetails extends Component {
                                 <Calendar
                                     setReservation={this.setReservation}
                                     reservations={this.state.offer.reservations}
-                                    setErrorMessage={this.setErrorMessage}
+                                    setCalendarMessage={this.setCalendarMessage}
                                 />
                             </Col>
-                            {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+                            {this.state.calendarMessage && <h3>{this.state.calendarMessage}</h3>}
                             <Col>
                                 <h6>Create Reservation</h6>
                                 <Button onClick={this.createReservation}>Create</Button>
