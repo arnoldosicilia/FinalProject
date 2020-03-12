@@ -35,6 +35,7 @@ const OfferCard = props => {
                         <h3>{props.brand}  ||  {props.model}</h3>
                         <p>{props.description}</p>
                         <p>{props.location}</p>
+                        <p>{props.size}</p>
 
                     </div>
                 </div>

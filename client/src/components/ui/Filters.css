@@ -1,4 +1,9 @@
 .filters {
     height: 50px;
     background-color: blue;
+    display: flex;
+}
+
+.filters .filter {
+    margin : 10px;
 }

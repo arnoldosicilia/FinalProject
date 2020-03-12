@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Calendar from 'react-calendar'
+import Calendar from '../ui/Calendar'
 
 import './Filters.css'
 import 'react-calendar/dist/Calendar.css';
@@ -23,10 +23,7 @@ class Filters extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            startDate: new Date(),
-            finishDate: new Date(),
-        }
+        this.state = {}
 
     }
 
@@ -43,42 +40,40 @@ class Filters extends Component {
     }
 
 
-
-
-
     //Location Methods
     changeLocation = e => this.props.changeLocation(e.target.name)
 
 
 
+    setDates = ({ startDate, endDate }) => { console.log('estas son las fechas ', startDate, endDate) }
 
 
 
     render() {
 
+        let location = this.props.location
+
         return (
 
             <div className='filters' >
+                <div className='filter' >
 
-                <Row>
-                    <Col>
-                        <Button title='Sort by Size' onClick={this.props.sortBySize}></Button>
-                    </Col>
-                    <Col>
-                        <DropdownButton title="Select a finishDate">
-                            <Calendar
-                                id="finishDate"
-                                onChange={this.finishDate}
-                                value={this.state.finishDate}
-                            />
-                        </DropdownButton>
-                    </Col>
-                    <Col>
-                        <DropdownButton id="dropdown-basic-button" title="Select Location">
-                            {this.props.locations.map((elm, idx) => <Dropdown.Item key={idx} onClick={this.changeLocation} name={elm}>{elm}</Dropdown.Item>)}
-                        </DropdownButton>
-                    </Col>
-                </Row>
+                    <Button title='Sort by Size' onClick={this.props.sortBySize}>Sort by Size {this.props.order && this.props.order}</Button>
+                </div>
+                <div className='filter' >
+                    <DropdownButton title="Select a finishDate">
+                        <Calendar
+                            setDates={this.setDates}
+                        />
+                    </DropdownButton>
+                </div>
+                <div className='filter' >
+
+                    <DropdownButton id="dropdown-basic-button" title={location}>
+                        {this.props.locations.map((elm, idx) => <Dropdown.Item key={idx} onClick={this.changeLocation} name={elm}>{elm}</Dropdown.Item>)}
+                    </DropdownButton>
+                </div>
+
             </div>
         )
     }

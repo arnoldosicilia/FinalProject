@@ -128,7 +128,7 @@ class OfferDetails extends Component {
                         <Row>
                             <Col>
                                 <Calendar
-                                    setReservation={this.setReservation}
+                                    setDates={this.setReservation}
                                     reservations={this.state.offer.reservations}
                                     setCalendarMessage={this.setCalendarMessage}
                                 />

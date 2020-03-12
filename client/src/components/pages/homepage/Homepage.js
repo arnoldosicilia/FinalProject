@@ -27,10 +27,12 @@ class Homepage extends Component {
                 location: '',
                 startDate: '',
                 finishDate: '',
+                sortedBySize: null,
             },
-
             offersArr: [],
-            locations: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada']
+            locations: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada'],
+
+
         }
     }
 
@@ -46,7 +48,8 @@ class Homepage extends Component {
     getOffers = location => {
         this.offerServices.getOffersByLocation(location)
             .then(allOffers => {
-                this.setState({ offersArr: allOffers, filter: { location: location } })
+                this.setState({ offersArr: allOffers, filters: { location: location } })
+
             })
             .catch(err => console.log(err))
     }
@@ -62,11 +65,13 @@ class Homepage extends Component {
     }
 
     sortBySize = () => {
-        const offerArrCopy = [...this.state.offersArr]
 
-        offerArrCopy.sort((a, b) => a - b)
+        const offersArrCopy = [...this.state.offersArr]
+        offersArrCopy.sort((a, b) => a.size - b.size)
+        const reversedOffersArr = [...offersArrCopy].reverse()
 
-        console.log(offerArrCopy)
+        !this.state.filters.sortedBySize && this.setState({ offersArr: offersArrCopy, filters: { sortedBySize: 'up' } })
+        this.state.filters.sortedBySize === 'up' ? this.setState({ offersArr: reversedOffersArr, filters: { sortedBySize: 'down' } }) : this.setState({ offersArr: offersArrCopy, filters: { sortedBySize: 'up' } })
 
     }
 
@@ -77,8 +82,10 @@ class Homepage extends Component {
 
 
 
-    render() {
 
+
+    render() {
+        console.log(this.state)
         return (
 
 
@@ -104,6 +111,8 @@ class Homepage extends Component {
                     changeLocation={this.changeLocation}
                     locations={this.state.locations}
                     sortBySize={this.sortBySize}
+                    order={this.state.sortedBySize}
+                    location={this.state.filters.location}
 
                 />
 
@@ -119,7 +128,7 @@ class Homepage extends Component {
                                 containerElement={<div style={{ height: "100%" }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 offers={this.state.offersArr}
-                                center={this.state.filter.location}
+                                center={this.state.filters.location}
                             />}
                     </Col>
                 </Row>

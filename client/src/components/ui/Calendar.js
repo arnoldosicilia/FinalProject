@@ -16,7 +16,7 @@ class Calendar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            blockedDates: ['2020-03-19T11:00:00.000+00:00', '2020-03-25T11:00:00.000+00:00'],
+            blockedDates: [],
             errorMessage: 'Por favor cambia la fecha dde inicio ',
         }
     }
@@ -36,8 +36,6 @@ class Calendar extends Component {
 
             moment(elm).isBetween(startDate, endDate, null, []) ? this.props.setCalendarMessage('Fecha incorrecta, por favor selecciona otra') : this.props.setCalendarMessage('Fecha Correcta')
 
-            // startDate && startDate.isBetween(elm.startDate, elm.endDate, null, []) && console.log('Por favor cambia la fecha dde inicio ')
-            // endDate && endDate.isBetween(elm.startDate, elm.endDate, null, []) && console.log('por favor cambia la fecha de finalizacion ')
         })
     }
 
@@ -75,7 +73,7 @@ class Calendar extends Component {
     changeHandler = ({ startDate, endDate }) => {
         this.checkAvailability(startDate, endDate)
         this.setState({ startDate, endDate })
-        this.props.setReservation({ startDate, endDate })
+        this.props.setDates({ startDate, endDate })
     }
 
 
