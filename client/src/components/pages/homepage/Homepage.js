@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment';
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -28,8 +29,10 @@ class Homepage extends Component {
                 startDate: '',
                 finishDate: '',
                 sortedBySize: null,
+                type: null,
             },
             offersArr: [],
+            offersArrCopy: [],
             locations: ['Baqueira', 'Andorra', 'Formigal', 'Sierra Nevada'],
 
 
@@ -47,10 +50,7 @@ class Homepage extends Component {
     //Offers Methods
     getOffers = location => {
         this.offerServices.getOffersByLocation(location)
-            .then(allOffers => {
-                this.setState({ offersArr: allOffers, filters: { location: location } })
-
-            })
+            .then(allOffers => this.setState({ offersArr: allOffers, offersArrCopy: allOffers, filters: { location: location } }))
             .catch(err => console.log(err))
     }
 
@@ -59,10 +59,7 @@ class Homepage extends Component {
     // Location
     setLocation = e => this.getOffers(e.target.value)
 
-    changeLocation = location => {
-        console.log('se ha llamado con el siguiente valor', location)
-        this.getOffers(location)
-    }
+    changeLocation = location => this.getOffers(location)
 
     sortBySize = () => {
 
@@ -72,9 +69,42 @@ class Homepage extends Component {
 
         !this.state.filters.sortedBySize && this.setState({ offersArr: offersArrCopy, filters: { sortedBySize: 'up' } })
         this.state.filters.sortedBySize === 'up' ? this.setState({ offersArr: reversedOffersArr, filters: { sortedBySize: 'down' } }) : this.setState({ offersArr: offersArrCopy, filters: { sortedBySize: 'up' } })
+    }
+
+    sortByType = type => {
+
+        let offersArrCopy = [...this.state.offersArrCopy]
+
+        if (type === 'All') {
+            this.setState({ offersArr: offersArrCopy })
+            return
+        }
+
+        offersArrCopy = offersArrCopy.filter(elm => elm.type === type)
+        this.setState({ offersArr: offersArrCopy, filters: { type: type } })
 
     }
 
+
+    setFilterDates = ({ startDate, endDate }) => {
+        this.filterByDates(startDate, endDate)
+        this.setState({ filters: { srtartDate: startDate, endDate: endDate } })
+    }
+
+
+    filterByDates = (filterStartDate, filterEndDate) => {
+
+        const offersArrCopy = [...this.state.offersArr]
+
+        offersArrCopy.filter(offer => {
+
+            return offer.reservations.some(reservation => {
+
+                return moment(filterStartDate).isBetween(reservation.startDate, reservation.endDate, null, []) && moment(filterEndDate).isBetween(reservation.startDate, reservation.endDate, null, [])
+
+            })
+        })
+    }
 
 
 
@@ -85,6 +115,7 @@ class Homepage extends Component {
 
 
     render() {
+
         console.log(this.state)
         return (
 
@@ -113,7 +144,9 @@ class Homepage extends Component {
                     sortBySize={this.sortBySize}
                     order={this.state.sortedBySize}
                     location={this.state.filters.location}
-
+                    setDates={this.setFilterDates}
+                    sortByType={this.sortByType}
+                    type={this.state.filters.type}
                 />
 
 
@@ -124,8 +157,8 @@ class Homepage extends Component {
                     <Col>
                         {this.state.offersArr.length > 0 &&
                             <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}
-                                loadingElement={<div style={{ height: "100%" }} />}
-                                containerElement={<div style={{ height: "100%" }} />}
+                                loadingElement={<div style={{ height: '600px' }} />}
+                                containerElement={<div style={{ height: '600px' }} />}
                                 mapElement={<div style={{ height: "100%" }} />}
                                 offers={this.state.offersArr}
                                 center={this.state.filters.location}

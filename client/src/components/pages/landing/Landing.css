@@ -1,0 +1,18 @@
+.landingHome {
+    padding:300px 750px 350px 250px ;
+    background-image: url('https://res.cloudinary.com/dbcrofsyy/image/upload/v1584051760/Backgroundimage_uceciz.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.landing{
+    border: 1px solid black;
+    padding:20px;font-weight: 400;
+    background-color: #f7f4f4
+}
+
+
+.landing hr{
+    size:2
+}

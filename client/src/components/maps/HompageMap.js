@@ -48,7 +48,7 @@ class Map extends Component {
         this.state.offers.forEach(elm => {
             Geocode.fromAddress(elm.direction)
                 .then(response => this.pushMarkersCoords(response.results[0].geometry.location))
-                .catch(err => console.log(err))
+                .catch(err => new Error(err))
         })
     }
 
@@ -64,7 +64,7 @@ class Map extends Component {
 
         return (
             <GoogleMap
-                defaultZoom={14}
+                defaultZoom={10}
                 defaultCenter={this.state.center}
                 center={this.state.center} >
 

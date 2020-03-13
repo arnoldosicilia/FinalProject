@@ -20,8 +20,10 @@ class NewOfferForm extends Component {
                 model: '',
                 size: '',
                 type: '',
+                direction: '',
+                location: '',
                 description: '',
-                image: '',
+                image: [],
             }
         }
     }
@@ -51,7 +53,11 @@ class NewOfferForm extends Component {
         const uploadData = new FormData()
         uploadData.append("image", e.target.files[0])
         this.filesServices.handleUpload(uploadData)
-            .then(response => { this.setState({ offer: { ...this.state.offer, image: response.secure_url } }) })
+            .then(response => {
+                let image = [...this.state.image]
+                image.push(response.secure_url)
+                this.setState({ offer: { ...this.state.offer, image: response.secure_url } })
+            })
             .catch(err => console.log(err))
     }
 
@@ -64,19 +70,19 @@ class NewOfferForm extends Component {
                     <Col>
                         <Form.Group>
                             <Form.Label>Brand:</Form.Label>
-                            <Form.Control placeholder="Brand" name="brand" value={this.state.offer.brand} onChange={this.handleChange} />
+                            <Form.Control placeholder="Brand" type='text' name="brand" value={this.state.offer.brand} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Model:</Form.Label>
-                            <Form.Control placeholder="Model" name="model" value={this.state.offer.model} onChange={this.handleChange} />
+                            <Form.Control placeholder="Model" type='text' name="model" value={this.state.offer.model} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Size:</Form.Label>
-                            <Form.Control placeholder="Size" name="size" value={this.state.offer.size} onChange={this.handleChange} />
+                            <Form.Control placeholder="Size" type='number' name="size" value={this.state.offer.size} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                 </Row>
@@ -108,13 +114,59 @@ class NewOfferForm extends Component {
                 </Form.Group>
                 <br />
                 <Form.Group>
+                    <Form.Label as="legend" column sm={2}>Location</Form.Label>
+                    <Row>
+                        <Col>
+                            <Form.Check
+                                type="radio"
+                                label="Baqueira"
+                                name='type'
+                                value='Skis'
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Check
+                                type="radio"
+                                label="Andorra"
+                                name="type"
+                                value='Andorra'
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Check
+                                type="radio"
+                                label="Formigal"
+                                name="type"
+                                value='Formigal'
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                        <Col>
+                            <Form.Check
+                                type="radio"
+                                label="Sierra Nevada"
+                                name="type"
+                                value='Sierra Nevada'
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                    </Row>
+                </Form.Group>
+                <Form.Group>
                     <Form.Label>Imagen</Form.Label>
                     <Form.Control type="file" name="image" onChange={this.handleFileUpload} />
                 </Form.Group>
                 <br />
                 <Form.Group>
                     <Form.Label>Description:</Form.Label>
-                    <Form.Control placeholder="Add a brief description if your material" name="description" value={this.state.offer.descfiption} onChange={this.handleChange} />
+                    <Form.Control placeholder="Add a brief description if your material" type='text' name="description" value={this.state.offer.descfiption} onChange={this.handleChange} />
+                </Form.Group>
+                <br />
+                <Form.Group>
+                    <Form.Label>Price:</Form.Label>
+                    <Form.Control placeholder="Price" type='number' name="price" value={this.state.offer.price} onChange={this.handleChange} />
                 </Form.Group>
                 <br />
                 <Button variant="dark" type="submit">Create</Button>

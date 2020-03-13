@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import DropdownButton from 'react-bootstrap/DropdownButton'
+import Carousel from 'react-bootstrap/Carousel'
 
 
 
@@ -104,7 +104,7 @@ class OfferDetails extends Component {
 
     render() {
 
-        //  console.log("Al renderizar......", JSON.stringify(this.state.reservation.startDate))
+
 
         const edit = `/edit/${this.state.offer._id}`
 
@@ -112,11 +112,22 @@ class OfferDetails extends Component {
             <>
 
                 {this.state.isTheOwner && <Button><Link to={edit}> Editar</Link></Button>}
-                <Row>
-                    <Col>
-                        <figure className='offerDetails'>
-                            {this.state.offer.image && <img src={this.state.offer.image[0]} alt={this.state.offer.model} />}
-                        </figure>
+                <Row className='offerDetails'>
+                    <Col lg={6}>
+                        <Carousel>
+                            {this.state.offer.image && this.state.offer.image.map(elm => {
+                                return (
+                                    <Carousel.Item>
+                                        <figure>
+                                            <img
+                                                src={elm}
+                                                alt={elm.model}
+                                            />
+                                        </figure>
+                                    </Carousel.Item>
+                                )
+                            })}
+                        </Carousel>
                     </Col>
                     <Col>
                         <h2>Brand: {this.state.offer.brand}</h2>

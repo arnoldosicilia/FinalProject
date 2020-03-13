@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Navbar from './components/ui/Navbar'
 import Homepage from './components/pages/homepage/Homepage'
+import Landing from './components/pages/landing/Landing'
 
 import Signup from './components/pages/signup/Signup'
 import Login from './components/pages/login/Login'
@@ -45,7 +46,8 @@ class App extends Component {
       <>
         <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
         <Switch>
-          <Route exact path="/" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
+          <Route exact path="/" render={() => <Landing loggedInUser={this.state.loggedInUser} />} />
+          <Route exact path="/homepage" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />

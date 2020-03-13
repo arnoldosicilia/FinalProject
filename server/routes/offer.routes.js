@@ -16,7 +16,6 @@ router.get('/getOneOffer/:id', (req, res, next) => {
         .then(theOffer => res.json(theOffer))
         .catch(err => console.log(err))
 
-
 })
 
 
@@ -51,6 +50,7 @@ router.get('/owner/:ownerId', (req, res, netx) => {
 router.get('/getOffersByLocation/:location', (req, res, netx) => {
 
     Offer.find({ location: req.params.location })
+        .populate('reservations')
         .then(theOffers => res.json(theOffers))
         .catch(err => console.log(err))
 })
