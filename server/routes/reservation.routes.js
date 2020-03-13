@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Reservation = require('../models/reservation.models')
 const Offer = require('../models/offer.model')
+const User = require('../models/user.model')
 
 router.post('/new', (req, res, next) => {
 
@@ -16,20 +17,30 @@ router.post('/new', (req, res, next) => {
         offerId,
     }
 
-
-
-    console.log('Llega al back sin problema y esta es la reserva', newReservation)
-
     Reservation.create(newReservation)
         .then(reservation => {
-            console.log(reservation)
-            console.log(reservation._id)
-            Offer.findByIdAndUpdate(req.body.offerId, { $push: { reservations: reservation._id } })
-                .populate('reservations')
-                .then(response => res.json(response))
+            const promiseOffer = Offer.findByIdAndUpdate(req.body.offerId, { $push: { reservations: reservation._id } }, { new: true }).populate('reservations')
+            const promiseUser = User.findByIdAndUpdate(req.user._id, { $push: { reservations: reservation._id } }, { new: true })
+            return Promise.all([promiseOffer, promiseUser])
+        })
+        .then(result => res.json(result[0]))
+        .catch(err => console.log(err))
+})
+
+router.post('/', (req, res, next) => {
+
+    const promiseArr = []
+    req.body.map((elm, idx) => {
+        idx = Reservation.findById(elm).populate('offerId')
+        promiseArr.push(idx)
+    })
+
+    Promise.all(promiseArr)
+        .then(result => {
+            console.log(result)
+            res.json(result)
         })
         .catch(err => console.log(err))
-
 
 })
 

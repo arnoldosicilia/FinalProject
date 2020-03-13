@@ -165,6 +165,11 @@ class NewOfferForm extends Component {
                 </Form.Group>
                 <br />
                 <Form.Group>
+                    <Form.Label>Direction:</Form.Label>
+                    <Form.Control placeholder="Add where they have to pick up the material" type='text' name="direction" value={this.state.offer.direction} onChange={this.handleChange} />
+                </Form.Group>
+                <br />
+                <Form.Group>
                     <Form.Label>Price:</Form.Label>
                     <Form.Control placeholder="Price" type='number' name="price" value={this.state.offer.price} onChange={this.handleChange} />
                 </Form.Group>

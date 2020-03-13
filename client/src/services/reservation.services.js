@@ -16,5 +16,12 @@ export default class Services {
         return this.service.post(`/new`, reservation).then(response => response.data)
     }
 
+    getReservations = Arr => {
+        this.service.post(`/`, Arr).then(response => {
+            console.log(response)
+            return response.data
+        })
+    }
+
 
 }

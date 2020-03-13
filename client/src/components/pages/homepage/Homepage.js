@@ -76,7 +76,7 @@ class Homepage extends Component {
         let offersArrCopy = [...this.state.offersArrCopy]
 
         if (type === 'All') {
-            this.setState({ offersArr: offersArrCopy })
+            this.setState({ offersArr: offersArrCopy, filters: { type: type } })
             return
         }
 
@@ -142,7 +142,7 @@ class Homepage extends Component {
                     changeLocation={this.changeLocation}
                     locations={this.state.locations}
                     sortBySize={this.sortBySize}
-                    order={this.state.sortedBySize}
+                    order={this.state.filters.sortedBySize}
                     location={this.state.filters.location}
                     setDates={this.setFilterDates}
                     sortByType={this.sortByType}

@@ -50,6 +50,10 @@ class Filters extends Component {
 
     render() {
 
+        let filterTypeTitle = ''
+        {
+            this.props.type ? filterTypeTitle = `Sort by type: ${this.props.type}` : filterTypeTitle = `Sort by type`
+        }
 
 
         return (
@@ -60,7 +64,7 @@ class Filters extends Component {
                 </div>
 
                 <div className='filter' >
-                    <DropdownButton variant="outline-primary" title='Sort by type'>
+                    <DropdownButton variant="outline-primary" title={filterTypeTitle}>
                         <Dropdown.Item name='All' onClick={this.sortByType}>Todos</Dropdown.Item>
                         <Dropdown.Item name='Skis' onClick={this.sortByType}>Skis</Dropdown.Item>
                         <Dropdown.Item name='Snowboard' onClick={this.sortByType}>Sonowboard</Dropdown.Item>

@@ -12,7 +12,7 @@ const userSchema = new Schema({
   },
   image: String,
   offersOwned: [{ type: Schema.Types.ObjectId, ref: 'Offer' }],
-  offersRented: [{ type: Schema.Types.ObjectId, ref: 'Offer' }]
+  reservations: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }]
 }, {
   timestamps: {
     createdAt: 'created_at',

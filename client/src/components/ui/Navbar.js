@@ -37,6 +37,7 @@ class NavBar extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
+                                <Nav.Link as="div"> <Link to='/homepage'>Lista</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/profile">{this.props.loggedInUser.username}</Link></Nav.Link>
                                 <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
                             </Nav>
@@ -50,6 +51,7 @@ class NavBar extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
+                                <Nav.Link as="div"> <Link to='/homepage'>Lista</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/signup">Registro</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/login">Inicio sesión</Link></Nav.Link>
                             </Nav>

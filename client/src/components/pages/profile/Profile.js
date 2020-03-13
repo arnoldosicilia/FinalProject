@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import OfferServices from '../../../services/offer.services'
+import ReservationServices from '../../../services/reservation.services'
 
 import NewOfferForm from '../../forms/NewOffer'
 
@@ -21,13 +22,19 @@ class Profile extends Component {
         super(props)
         this.state = {
             userOffers: [],
-            showmodal: false
+            showmodal: false,
+            userReservations: [],
+
         }
         this.offerServices = new OfferServices()
+        this.reservationServices = new ReservationServices()
 
     }
 
-    componentDidMount = () => this.getUserOffers()
+    componentDidMount = () => {
+        //this.getUserReservations()
+        this.getUserOffers()
+    }
 
     finishModal = () => {
         this.closeModal()
@@ -42,15 +49,20 @@ class Profile extends Component {
 
     getUserOffers = () => {
         this.offerServices.getOfferByOwner(this.props.loggedInUser._id)
-            .then(allOffers => {
-                console.log(allOffers)
-                this.setState({ userOffers: allOffers })
-            })
+            .then(allOffers => this.setState({ userOffers: allOffers }))
             .catch(err => console.log(err))
     }
 
-    render() {
+    // getUserReservations = () => {
+    //     this.reservationServices.getReservations(this.props.loggedInUser.reservations)
+    //         .then(result => this.setState({ userReservations: result }))
+    //         .catch(err => console.log(err))
 
+
+    // }
+
+    render() {
+        console.log(this.state.userReservations)
         return (
             <div className='profile'>
                 <section>

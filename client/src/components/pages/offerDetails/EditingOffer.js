@@ -33,7 +33,11 @@ class OfferDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    checkTheOwner = Offer => this.props.loggedInUser._id === Offer.owner ? this.setState({ isTheOwner: true, offer: Offer }) : this.setState({ isTheOwner: false, offer: Offer })
+    checkTheOwner = Offer => {
+        console.log(this.propsloggedInUser._id)
+        console.log(Offer.owner)
+        this.props.loggedInUser._id === Offer.owner ? this.setState({ isTheOwner: true, offer: Offer }) : this.setState({ isTheOwner: false, offer: Offer })
+    }
 
 
 
