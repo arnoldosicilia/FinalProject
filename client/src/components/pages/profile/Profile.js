@@ -52,7 +52,7 @@ class Profile extends Component {
     render() {
 
         return (
-            <>
+            <div className='profile'>
                 <section>
                     <h2>Hola {this.props.loggedInUser.username}</h2>
                 </section>
@@ -79,7 +79,7 @@ class Profile extends Component {
 
 
 
-            </>
+            </div>
         )
 
     }

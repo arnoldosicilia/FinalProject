@@ -46,7 +46,7 @@ class Signup extends Component {
 
         return (
 
-            <Container>
+            <div className='signup'>
 
                 <h1>Registro de usuarios</h1>
 
@@ -62,7 +62,8 @@ class Signup extends Component {
 
                     <Button variant="dark" type="submit">Registrarse</Button>
                 </Form>
-            </Container>
+
+            </div>
 
         )
     }

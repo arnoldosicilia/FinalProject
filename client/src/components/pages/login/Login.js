@@ -46,7 +46,7 @@ class Login extends Component {
 
         return (
 
-            <Container>
+            <div className='login'>
 
                 <h1>Login de usuarios</h1>
 
@@ -62,7 +62,8 @@ class Login extends Component {
 
                     <Button variant="dark" type="submit">Conectarse</Button>
                 </Form>
-            </Container>
+            </div>
+
 
         )
     }

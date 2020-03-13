@@ -56,18 +56,11 @@ class Filters extends Component {
 
             <div className='filters' >
                 <div className='filter' >
-                    <Button title='Sort by Size' onClick={this.props.sortBySize}>Sort by Size {this.props.order && this.props.order}</Button>
-                </div>
-                <div className='filter' >
-                    <DropdownButton title="Select a finishDate">
-                        <Calendar
-                            setDates={this.props.setDates}
-                        />
-                    </DropdownButton>
+                    <Button variant="outline-primary" title='Sort by Size' onClick={this.props.sortBySize}>Sort by Size {this.props.order && this.props.order}</Button>
                 </div>
 
                 <div className='filter' >
-                    <DropdownButton title='Sort by type'>
+                    <DropdownButton variant="outline-primary" title='Sort by type'>
                         <Dropdown.Item name='All' onClick={this.sortByType}>Todos</Dropdown.Item>
                         <Dropdown.Item name='Skis' onClick={this.sortByType}>Skis</Dropdown.Item>
                         <Dropdown.Item name='Snowboard' onClick={this.sortByType}>Sonowboard</Dropdown.Item>
@@ -78,14 +71,22 @@ class Filters extends Component {
                 <div className='filter' >
 
                     {this.props.location ? (
-                        <DropdownButton id="dropdown-basic-button" title={this.props.location} >
+                        <DropdownButton variant="outline-primary" id="dropdown-basic-button" title={this.props.location} >
                             {this.props.locations.map((elm, idx) => <Dropdown.Item key={idx} onClick={this.changeLocation} name={elm}>{elm}</Dropdown.Item>)}
                         </DropdownButton>
                     ) : (
-                            <DropdownButton id="dropdown-basic-button" title='Select A location '>
+                            <DropdownButton variant="outline-primary" id="dropdown-basic-button" title='Select A location '>
                                 {this.props.locations.map((elm, idx) => <Dropdown.Item key={idx} onClick={this.changeLocation} name={elm}>{elm}</Dropdown.Item>)}
                             </DropdownButton>)
                     }
+                </div>
+
+                <div className='filter' >
+                    <DropdownButton variant="outline-primary" title="Select Dates">
+                        <Calendar
+                            setDates={this.props.setDates}
+                        />
+                    </DropdownButton>
                 </div>
 
             </div>

@@ -1,17 +1,28 @@
 .offerCard{
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     display: flex;
-    
-    padding:15px
+    padding:15px;
+    color: black;
+    border: 1px solid black;
+    background-color: #cfe7f9;    
+
 }
 
 .offerCard p {
-    font-size: 0.5em;
+    font-size: .75em;
+}
+.offerCard .properties{
+    margin-left:15px;
+    padding:3px
 }
 
 .offerCard img {
-
     height: 200px;
     width: 200px;
     object-fit: cover;
+}
+.details{
+    display:flex;
+    justify-content: space-between;
+
 }

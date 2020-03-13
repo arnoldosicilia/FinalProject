@@ -120,7 +120,7 @@ class Homepage extends Component {
         return (
 
 
-            <>
+            <div className='homepage'>
                 <Modal show={this.state.showmodal} size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
@@ -165,7 +165,7 @@ class Homepage extends Component {
                             />}
                     </Col>
                 </Row>
-            </>
+            </div>
         )
     }
 }

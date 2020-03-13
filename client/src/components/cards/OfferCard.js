@@ -12,6 +12,7 @@ const OfferCard = props => {
     return (
         <>
             <Link to={direction}>
+
                 <div className='offerCard'>
 
 
@@ -31,16 +32,20 @@ const OfferCard = props => {
                     </Carousel>
 
 
-                    <div>
-                        <h3>{props.brand}  ||  {props.model}</h3>
-                        <p>{props.description}</p>
-                        <p>{props.location}</p>
-                        <p>{props.size}</p>
+                    <div className='properties'>
+                        <h3>{props.brand}</h3>
+                        <h5>{props.model}</h5>
+                        <hr />
+                        <p>Description: {props.description}</p>
+                        <div className='details'>
+                            <p> Location: {props.location}</p>
+                            <p>Size: {props.size}</p>
+                        </div>
 
                     </div>
                 </div>
             </Link>
-            <hr></hr>
+
         </>
     )
 }

@@ -1,9 +1,11 @@
 .filters {
-    height: 50px;
-    background-color: blue;
+    height: 45px;
+    background-color: #f7f4f4;
     display: flex;
+    padding-bottom: 10px;
+    align-items: center;
 }
 
 .filters .filter {
-    margin : 10px;
+    margin-right : 10px;
 }

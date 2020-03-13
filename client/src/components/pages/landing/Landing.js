@@ -12,10 +12,10 @@ const Landing = () => {
     return (
         <div className='landingHome'>
             <div className='landing'>
-                <h5>Book and enjoy, ski and snowboard material and much more in kisharing</h5>
+                <h4>Book and enjoy, ski and snowboard material and much more in skisharing</h4>
                 <hr />
                 <p>If you want to rent and enjoy all the materials necessary to practice all mountain sports. Jsut book, rent and enjoy it!</p>
-                <Button variant="dark"><Link to='/homepage'>Let`s try</Link></Button>
+                <Link to='/homepage'><Button variant="dark" block>Let`s try</Button></Link>
             </div>
         </div>
     )
