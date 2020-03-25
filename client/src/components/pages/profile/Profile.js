@@ -74,7 +74,7 @@ class Profile extends Component {
                         <Modal.Body>
                             <h3>Editar perfil:</h3>
                             <hr></hr>
-                            <EditProfileForm loggedInUser={this.props.loggedInUser} />
+                            <EditProfileForm loggedInUser={this.props.loggedInUser} finishModal={this.finishModal} />
                         </Modal.Body>
                     </Modal>
                 </section>

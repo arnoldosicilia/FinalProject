@@ -113,6 +113,17 @@ authRoutes.get('/loggedin', (req, res, next) => {
 authRoutes.post('/update', (req, res, next) => {
 
   console.log('req.useer---->', req.user)
+  console.log('req.body---->', req.body)
+
+  const { name, surname } = req.body
+  User.findByIdAndUpdate(req.body._id, { name, surname }, { new: true })
+    .then(user => {
+      console.log('Se ha actualizado el user en la BBDD---->', user)
+      res.status(200).json(user)
+      console.log()
+    })
+    .catch(err => console.log(err))
+
 
 
 

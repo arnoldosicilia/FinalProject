@@ -37,22 +37,22 @@ class EditProfileForm extends Component {
 
     updateUser = () => {
         this.authServices.update(this.state.userUpdate)
-            .then(offer => console.log(offer))
-            .catch(err => console.log('error al postear la nueva oferta', err))
-    }
-
-
-    handleFileUpload = e => {
-
-        const uploadData = new FormData()
-        for (let key in e.target.files) {
-            uploadData.append("images", e.target.files[key])
-        }
-
-        this.filesServices.handleUpload(uploadData)
-            .then(response => this.setState({ offer: { ...this.state.offer, images: response.imagesSecureURLs } }))
+            .then(user => console.log(user))
             .catch(err => console.log(err))
     }
+
+
+    // handleFileUpload = e => {
+
+    //     const uploadData = new FormData()
+    //     for (let key in e.target.files) {
+    //         uploadData.append("images", e.target.files[key])
+    //     }
+
+    //     this.filesServices.handleUpload(uploadData)
+    //         .then(response => this.setState({ offer: { ...this.state.offer, images: response.imagesSecureURLs } }))
+    //         .catch(err => console.log(err))
+    // }
 
 
     render() {
