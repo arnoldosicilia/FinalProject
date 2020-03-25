@@ -4,10 +4,11 @@ export default class Services {
 
     constructor() {
         this.service = axios.create({
-            baseURL: `${process.env.REACT_APP_URL}/file`,
+            baseURL: `${process.env.REACT_APP_URL}/files`,
             withCredentials: true   // RUTAS PERSISTENTES
         })
     }
 
     handleUpload = theFile => this.service.post('/upload', theFile).then(response => response.data)
+
 }

@@ -108,15 +108,9 @@ class Homepage extends Component {
 
 
 
-
-
-
-
-
-
     render() {
 
-        console.log(this.state)
+
         return (
 
 

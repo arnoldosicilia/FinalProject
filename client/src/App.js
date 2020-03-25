@@ -46,8 +46,9 @@ class App extends Component {
       <>
         <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
         <Switch>
-          <Route exact path="/" render={() => <Landing loggedInUser={this.state.loggedInUser} />} />
-          <Route exact path="/homepage" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
+          <Route exact path="/" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          {/* <Route exact path="/" render={() => <Landing loggedInUser={this.state.loggedInUser} />} /> */}
+          <Route path="/homepage" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />

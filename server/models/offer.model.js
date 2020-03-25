@@ -18,7 +18,7 @@ const offerSchema = new Schema({
   },
   reservations: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }],
   direction: String,
-  image: Array,
+  images: Array,
   description: String,
 
   price: Number,

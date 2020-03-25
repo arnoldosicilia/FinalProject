@@ -11,6 +11,8 @@ router.get('/getAllOffers', (req, res, next) => {
 
 router.get('/getOneOffer/:id', (req, res, next) => {
 
+    console.log('llega al back con  ->', req.params)
+
     Offer.findById(req.params.id)
         .populate('reservations')
         .then(theOffer => res.json(theOffer))
@@ -21,6 +23,10 @@ router.get('/getOneOffer/:id', (req, res, next) => {
 
 
 router.post('/new', (req, res, next) => {
+
+    console.log(req.body)
+
+
     // const { brand, model} = 
     // const 
     const newOffer = {
@@ -31,7 +37,7 @@ router.post('/new', (req, res, next) => {
         description: req.body.description,
         ownerName: req.user.username,
         owner: req.user._id,
-        image: req.body.image,
+        images: req.body.images,
     }
 
     Offer.create(newOffer)

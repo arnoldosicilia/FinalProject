@@ -41,7 +41,6 @@ class OfferDetails extends Component {
 
     //Brigns the offer from the DB and check if the owner is the same as the logged user
     getTheOffer = () => {
-
         this.offerServices.getOneOffer(this.props.match.params._id)
             .then(Offer => this.checkTheOwner(Offer))
             .catch(err => console.log(err))
@@ -104,18 +103,16 @@ class OfferDetails extends Component {
 
     render() {
 
-
-
-        const edit = `/edit/${this.state.offer._id}`
+        const editLink = `/edit/${this.state.offer._id}`
 
         return (
             <>
 
-                {this.state.isTheOwner && <Button><Link to={edit}> Editar</Link></Button>}
+                {this.state.isTheOwner && <Button><Link to={editLink}> Editar</Link></Button>}
                 <Row className='offerDetails'>
                     <Col lg={6}>
                         <Carousel>
-                            {this.state.offer.image && this.state.offer.image.map(elm => {
+                            {this.state.offer.images && this.state.offer.images.map(elm => {
                                 return (
                                     <Carousel.Item>
                                         <figure>

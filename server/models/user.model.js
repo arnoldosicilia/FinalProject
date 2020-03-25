@@ -8,9 +8,16 @@ const userSchema = new Schema({
     type: String,
     enum: ['Owner', 'User'],
     default: 'User'
-
   },
+  name: String,
+  surname: String,
+  phone: Number,
+  email: String,
   image: String,
+  frequentLocation: {
+    type: String,
+    default: ''
+  },
   offersOwned: [{ type: Schema.Types.ObjectId, ref: 'Offer' }],
   reservations: [{ type: Schema.Types.ObjectId, ref: 'Reservation' }]
 }, {

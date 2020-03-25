@@ -3,14 +3,20 @@ const router = express.Router();
 
 const uploader = require('../configs/cloudinary.config');
 
-router.post('/upload', uploader.single("image"), (req, res, next) => {
+router.post('/upload', uploader.array("images"), (req, res, next) => {
 
-    if (!req.file) {
+
+
+
+    if (!req.files) {
         next(new Error('No file uploaded!'));
         return;
     }
 
-    res.json({ secure_url: req.file.secure_url });
+    const uploadFilesURLs = []
+    req.files.map(elm => uploadFilesURLs.push(elm.secure_url))
+    res.json({ imagesSecureURLs: uploadFilesURLs });
 })
+
 
 module.exports = router;

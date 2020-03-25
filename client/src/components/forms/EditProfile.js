@@ -5,46 +5,38 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-import OfferServices from '../../services/offer.services'
+import AuthServices from '../../services/auth.services'
 import FilesServices from '../../services/file.services'
 
 
-class NewOfferForm extends Component {
+class EditProfileForm extends Component {
     constructor(props) {
         super(props)
-        this.offerServices = new OfferServices()
+        this.authServices = new AuthServices()
         this.filesServices = new FilesServices()
         this.state = {
-            offer: {
-                brand: '',
-                model: '',
-                size: '',
-                type: '',
-                direction: '',
-                location: '',
-                description: '',
-                images: [],
-                price: '',
-            }
+            userUpdate: {}
+
         }
     }
 
+    componentDidMount = () => this.setState({ userUpdate: this.props.loggedInUser })
 
     handleChange = e => {
         let { name, value, } = e.target
-        this.setState({ offer: { ...this.state.offer, [name]: value } })
+        this.setState({ userUpdate: { ...this.state.userUpdate, [name]: value } })
     }
 
 
     handleSubmit = e => {
         e.preventDefault()
-        this.postOffer()
-        this.props.finishModal()
+        this.updateUser()
+        //this.props.finishModal()
     }
 
 
-    postOffer = () => {
-        this.offerServices.createNewOffer(this.state.offer)
+    updateUser = () => {
+        this.authServices.update(this.state.userUpdate)
             .then(offer => console.log(offer))
             .catch(err => console.log('error al postear la nueva oferta', err))
     }
@@ -64,28 +56,29 @@ class NewOfferForm extends Component {
 
 
     render() {
+
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Row>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Brand:</Form.Label>
-                            <Form.Control placeholder="Brand" type='text' name="brand" value={this.state.offer.brand} onChange={this.handleChange} />
+                            <Form.Label>Nombre:</Form.Label>
+                            <Form.Control placeholder="Brand" type='text' name="name" value={this.state.userUpdate.name} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
-                            <Form.Label>Model:</Form.Label>
-                            <Form.Control placeholder="Model" type='text' name="model" value={this.state.offer.model} onChange={this.handleChange} />
+                            <Form.Label>Apellido:</Form.Label>
+                            <Form.Control placeholder="Model" type='text' name="surname" value={this.state.userUpdate.surname} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
-                    <Col>
+                </Row>
+                {/* <Col>
                         <Form.Group>
                             <Form.Label>Size:</Form.Label>
                             <Form.Control placeholder="Size" type='number' name="size" value={this.state.offer.size} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
-                </Row>
                 <br />
                 <Form.Group>
                     <Row>
@@ -174,13 +167,13 @@ class NewOfferForm extends Component {
                 <Form.Group>
                     <Form.Label>Price:</Form.Label>
                     <Form.Control placeholder="Price" type='number' name="price" value={this.state.offer.price} onChange={this.handleChange} />
-                </Form.Group>
+                </Form.Group>*/}
                 <br />
-                <Button variant="dark" type="submit">Create</Button>
+                <Button variant="dark" type="submit">Update</Button>
 
             </Form>
         )
     }
 }
 
-export default NewOfferForm
+export default EditProfileForm

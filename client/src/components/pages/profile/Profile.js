@@ -4,6 +4,7 @@ import OfferServices from '../../../services/offer.services'
 import ReservationServices from '../../../services/reservation.services'
 
 import NewOfferForm from '../../forms/NewOffer'
+import EditProfileForm from '../../forms/EditProfile'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -13,6 +14,7 @@ import Button from 'react-bootstrap/Button'
 
 
 import OfferCard from '../../cards/OfferCard'
+import ProfileCard from '../../cards/ProfileCard'
 
 
 
@@ -22,8 +24,10 @@ class Profile extends Component {
         super(props)
         this.state = {
             userOffers: [],
-            showmodal: false,
             userReservations: [],
+            profileModal: false,
+            offerModal: false,
+
 
         }
         this.offerServices = new OfferServices()
@@ -39,12 +43,13 @@ class Profile extends Component {
     finishModal = () => {
         this.closeModal()
         this.getUserOffers()
-
-        console.log(this.state.userOffers)
     }
 
-    openModal = () => this.setState({ showmodal: true })
-    closeModal = () => this.setState({ showmodal: false })
+
+    openOfferModal = () => this.setState({ offerModal: true })
+    openProfileModal = () => this.setState({ profileModal: true })
+
+    closeModal = () => this.setState({ offerModal: false, profileModal: false })
 
 
     getUserOffers = () => {
@@ -53,47 +58,49 @@ class Profile extends Component {
             .catch(err => console.log(err))
     }
 
-    // getUserReservations = () => {
-    //     this.reservationServices.getReservations(this.props.loggedInUser.reservations)
-    //         .then(result => this.setState({ userReservations: result }))
-    //         .catch(err => console.log(err))
 
-
-    // }
 
     render() {
-        console.log(this.state.userReservations)
+
         return (
+
             <div className='profile'>
                 <section>
-                    <h2>Hola {this.props.loggedInUser.username}</h2>
+                    <ProfileCard loggedInUser={this.props.loggedInUser} />
+
+                    <Button variant="dark" onClick={this.openProfileModal}>Edit Profile</Button>
+
+                    <Modal show={this.state.profileModal} onHide={this.closeModal}>
+                        <Modal.Body>
+                            <h3>Editar perfil:</h3>
+                            <hr></hr>
+                            <EditProfileForm loggedInUser={this.props.loggedInUser} />
+                        </Modal.Body>
+                    </Modal>
                 </section>
-                <hr />
+
                 <section>
                     <Container>
                         <Row>
-                            {this.state.userOffers.map((elm, idx) => <Col key={idx}><OfferCard  {...elm} /></Col>)}
+                            {this.state.userOffers.map((elm, idx) => <Col key={idx}> <OfferCard {...elm} /></Col>)}
                         </Row>
                     </Container>
+
+                    <hr />
+
+                    <Button variant="dark" onClick={this.openOfferModal}>Create New Offer</Button>
+
+                    <Modal show={this.state.offerModal} onHide={this.closeModal}>
+                        <Modal.Body>
+                            <h3>Nueva oferta:</h3>
+                            <hr></hr>
+                            <NewOfferForm loggedInUser={this.props.loggedInUser} finishModal={this.finishModal} />
+                        </Modal.Body>
+                    </Modal>
                 </section>
-                <hr />
-
-                <Button variant="dark" onClick={this.openModal}>Create New Offer</Button>
-
-                <Modal show={this.state.showmodal} onHide={this.closeModal}>
-                    <Modal.Body>
-                        <h3>Nueva oferta:</h3>
-                        <hr></hr>
-                        <NewOfferForm loggedInUser={this.props.loggedInUser} finishModal={this.finishModal} />
-                    </Modal.Body>
-                </Modal>
-
-
-
-
             </div>
         )
-
     }
 }
+
 export default Profile

@@ -5,21 +5,23 @@ import './OfferCard.css'
 import { Link } from 'react-router-dom'
 
 import Carousel from 'react-bootstrap/Carousel'
+
+
 const OfferCard = props => {
 
-    const direction = `/offerDetails/${props._id}`
+    const cardLink = `/offerDetails/${props._id}`
 
     return (
-        <>
-            <Link to={direction}>
+        <section>
+            <Link to={cardLink}>
 
                 <div className='offerCard'>
 
 
                     <Carousel>
-                        {props.image.map(elm => {
+                        {props.images.map((elm, idx) => {
                             return (
-                                <Carousel.Item>
+                                <Carousel.Item key={idx}>
                                     <figure>
                                         <img
                                             src={elm}
@@ -46,7 +48,7 @@ const OfferCard = props => {
                 </div>
             </Link>
 
-        </>
+        </section>
     )
 }
 export default OfferCard

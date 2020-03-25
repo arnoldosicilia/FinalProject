@@ -1,0 +1,12 @@
+.profileCard{
+display: flex;
+}
+
+.profileCard img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border:1px solid black ;
+    border-radius: 50%;
+    margin-right: 40px;
+}
