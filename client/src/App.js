@@ -33,9 +33,11 @@ class App extends Component {
   setTheUser = userObj => this.setState({ loggedInUser: userObj })
 
   fetchUser = () => {
+    console.log('se llama al fettheuser en APP')
     this.services.loggedin()
       .then(theUser => this.setState({ loggedInUser: theUser }))
       .catch(() => this.setState({ loggedInUser: false }))
+    console.log(this.state)
   }
 
 
@@ -44,14 +46,14 @@ class App extends Component {
 
     return (
       <>
-        <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+        <Navbar setTheUser={this.setTheUser} loggedInUser={this.props.loggedInUser} />
         <Switch>
-          <Route exact path="/" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          <Route exact path="/" render={() => this.state.loggedInUser ? <Profile fetchUser={this.fetchUser} loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
           {/* <Route exact path="/" render={() => <Landing loggedInUser={this.state.loggedInUser} />} /> */}
           <Route path="/homepage" render={() => <Homepage loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile fetchUser={this.fetchUser} loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
           <Route path="/offerDetails/:_id" render={props => <OfferDetails {...props} loggedInUser={this.state.loggedInUser} />} />
           <Route path="/edit/:_id" render={match => <EditingOffer  {...match} loggedInUser={this.state.loggedInUser} />} />
         </Switch>

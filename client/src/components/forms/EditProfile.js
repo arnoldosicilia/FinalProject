@@ -22,6 +22,7 @@ class EditProfileForm extends Component {
 
     componentDidMount = () => this.setState({ userUpdate: this.props.loggedInUser })
 
+
     handleChange = e => {
         let { name, value, } = e.target
         this.setState({ userUpdate: { ...this.state.userUpdate, [name]: value } })
@@ -31,13 +32,14 @@ class EditProfileForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.updateUser()
-        //this.props.finishModal()
+
+        this.props.finishModal()
     }
 
 
     updateUser = () => {
         this.authServices.update(this.state.userUpdate)
-            .then(user => console.log(user))
+            .then(user => this.props.fetchUser())
             .catch(err => console.log(err))
     }
 

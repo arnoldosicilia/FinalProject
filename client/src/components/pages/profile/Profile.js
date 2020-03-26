@@ -23,13 +23,13 @@ class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loggedInUser: this.props.loggedInUser,
             userOffers: [],
             userReservations: [],
             profileModal: false,
             offerModal: false,
-
-
         }
+
         this.offerServices = new OfferServices()
         this.reservationServices = new ReservationServices()
 
@@ -43,6 +43,7 @@ class Profile extends Component {
     finishModal = () => {
         this.closeModal()
         this.getUserOffers()
+
     }
 
 
@@ -74,7 +75,7 @@ class Profile extends Component {
                         <Modal.Body>
                             <h3>Editar perfil:</h3>
                             <hr></hr>
-                            <EditProfileForm loggedInUser={this.props.loggedInUser} finishModal={this.finishModal} />
+                            <EditProfileForm loggedInUser={this.props.loggedInUser} fetchUser={this.props.fetchUser} finishModal={this.finishModal} />
                         </Modal.Body>
                     </Modal>
                 </section>
