@@ -33,20 +33,17 @@ class App extends Component {
   setTheUser = userObj => this.setState({ loggedInUser: userObj })
 
   fetchUser = () => {
-    console.log('se llama al fettheuser en APP')
     this.services.loggedin()
       .then(theUser => this.setState({ loggedInUser: theUser }))
       .catch(() => this.setState({ loggedInUser: false }))
-    console.log(this.state)
   }
 
 
   render() {
 
-
     return (
       <>
-        <Navbar setTheUser={this.setTheUser} loggedInUser={this.props.loggedInUser} />
+        <Navbar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
         <Switch>
           <Route exact path="/" render={() => this.state.loggedInUser ? <Profile fetchUser={this.fetchUser} loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
           {/* <Route exact path="/" render={() => <Landing loggedInUser={this.state.loggedInUser} />} /> */}

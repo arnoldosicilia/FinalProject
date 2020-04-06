@@ -65,24 +65,34 @@ class EditProfileForm extends Component {
                     <Col>
                         <Form.Group>
                             <Form.Label>Nombre:</Form.Label>
-                            <Form.Control placeholder="Brand" type='text' name="name" value={this.state.userUpdate.name} onChange={this.handleChange} />
+                            <Form.Control placeholder="Name" type='text' name="name" value={this.state.userUpdate.name} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group>
                             <Form.Label>Apellido:</Form.Label>
-                            <Form.Control placeholder="Model" type='text' name="surname" value={this.state.userUpdate.surname} onChange={this.handleChange} />
+                            <Form.Control placeholder="Surname" type='text' name="surname" value={this.state.userUpdate.surname} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
                 </Row>
-                {/* <Col>
+
+                <br />
+                <Row>
+                    <Col>
+
                         <Form.Group>
                             <Form.Label>Size:</Form.Label>
-                            <Form.Control placeholder="Size" type='number' name="size" value={this.state.offer.size} onChange={this.handleChange} />
+                            <Form.Control placeholder="Phone" type='number' name="phone" value={this.state.userUpdate.phone} onChange={this.handleChange} />
                         </Form.Group>
                     </Col>
-                <br />
-                <Form.Group>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Email:</Form.Label>
+                            <Form.Control placeholder="Email" type='email' name="email" value={this.state.userUpdate.email} onChange={this.handleChange} />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                {/* <Form.Group>
                     <Row>
                         <Col>
                             <Form.Label as="legend" column sm={2}>Type</Form.Label>
@@ -169,7 +179,7 @@ class EditProfileForm extends Component {
                 <Form.Group>
                     <Form.Label>Price:</Form.Label>
                     <Form.Control placeholder="Price" type='number' name="price" value={this.state.offer.price} onChange={this.handleChange} />
-                </Form.Group>*/}
+                </Form.Group> */}
                 <br />
                 <Button variant="dark" type="submit">Update</Button>
 

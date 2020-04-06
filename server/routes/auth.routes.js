@@ -62,7 +62,6 @@ authRoutes.post("/signup", (req, res, next) => {
 })
 
 
-
 authRoutes.post('/login', (req, res, next) => {
 
   passport.authenticate('local', (err, theUser, failureDetails) => {
@@ -92,7 +91,6 @@ authRoutes.post('/login', (req, res, next) => {
 });
 
 
-
 authRoutes.post('/logout', (req, res, next) => {
   // req.logout() is defined by passport
   req.logout();
@@ -101,22 +99,27 @@ authRoutes.post('/logout', (req, res, next) => {
 
 
 authRoutes.get('/loggedin', (req, res, next) => {
-  // req.isAuthenticated() is defined by passport
 
+  // req.isAuthenticated() is defined by passport
   if (req.isAuthenticated()) {
-    res.status(200).json(req.user);
+
+    User.findById(req.user._id)
+      .populate('reservations')
+      .then(theUser => res.status(200).json(theUser))
+      .catch(err => console.log(err))
     return;
   }
   res.status(403).json({ message: 'Unauthorized' });
 });
+
 
 authRoutes.post('/update', (req, res, next) => {
 
   console.log('req.useer---->', req.user)
   console.log('req.body---->', req.body)
 
-  const { name, surname } = req.body
-  User.findByIdAndUpdate(req.body._id, { name, surname }, { new: true })
+  const { name, surname, phone, email } = req.body
+  User.findByIdAndUpdate(req.body._id, { name, surname, phone, email }, { new: true })
     .then(user => {
       console.log('Se ha actualizado el user en la BBDD---->', user)
       res.status(200).json(user)

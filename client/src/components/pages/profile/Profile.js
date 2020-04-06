@@ -59,16 +59,25 @@ class Profile extends Component {
             .catch(err => console.log(err))
     }
 
+    getUserReservations = () => {
+
+
+
+    }
+
 
 
     render() {
+
+        console.log(this.state)
+
 
         return (
 
             <div className='profile'>
                 <section>
                     <ProfileCard loggedInUser={this.props.loggedInUser} />
-
+                    <br />
                     <Button variant="dark" onClick={this.openProfileModal}>Edit Profile</Button>
 
                     <Modal show={this.state.profileModal} onHide={this.closeModal}>
@@ -79,7 +88,7 @@ class Profile extends Component {
                         </Modal.Body>
                     </Modal>
                 </section>
-
+                <br />
                 <section>
                     <Container>
                         <Row>
